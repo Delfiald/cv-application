@@ -3,15 +3,17 @@ import Footer from './components/Footer'
 import GeneralInfo from './components/GeneralInfo'
 import Education from './components/Education'
 import Experience from './components/Experience'
+import Preview from './components/Preview'
 
 function App() {
   return (
     <>
-      <Header></Header>
-      <GeneralInfo></GeneralInfo>
-      <Education></Education>
-      <Experience></Experience>
-      <Footer></Footer>
+      <Header />
+      <GeneralInfo />
+      <Education />
+      <Experience />
+      <Preview />
+      <Footer />
     </>
   )
 }

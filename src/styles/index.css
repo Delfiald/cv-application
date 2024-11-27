@@ -9,3 +9,40 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
+
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: 'header header'
+  'general-info preview'
+  'education preview'
+  'experience preview'
+  'footer footer';
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 70px repeat(3, 1fr) 70px;
+  gap: 1rem;
+}
+
+header {
+  grid-area: header;
+}
+
+#general-info {
+  grid-area: general-info;
+}
+
+#education {
+  grid-area: education;
+}
+
+#experience {
+  grid-area: experience;
+}
+
+#preview {
+  grid-area: preview;
+}
+
+footer {
+  grid-area: footer;
+}
