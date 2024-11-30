@@ -2,25 +2,39 @@ function Graphics({ generalInfoInput }) {
  return (
   <div id="graphics">
    <h2>Graphics</h2>
-   <h2>Name: {generalInfoInput.firstName}</h2>
-   <h2>Email Address: {generalInfoInput.email}</h2>
-   <h2>Phone Number: {generalInfoInput.phone}</h2>
+   <p>
+    Name: {generalInfoInput.firstName} {generalInfoInput.lastName}
+   </p>
+   <p>
+    Email Address:{" "}
+    <a href={`mail:to${generalInfoInput.email}`}>{generalInfoInput.email}</a>
+   </p>
+   <p>Phone Number: {generalInfoInput.phone}</p>
   </div>
  );
 }
 
-function ATS({ generalInfoInput }) {
+function ATS({ generalInfoInput, additionalLinks }) {
  return (
   <div id="ats">
    <h2>ATS</h2>
-   <h2>Name: {generalInfoInput.firstName}</h2>
-   <h2>Email Address: {generalInfoInput.email}</h2>
-   <h2>Phone Number: {generalInfoInput.phone}</h2>
+   <p>
+    Name: {generalInfoInput.firstName} {generalInfoInput.lastName}
+   </p>
+   <p>Email Address: {generalInfoInput.email}</p>
+   <p>Phone Number: {generalInfoInput.phone}</p>
+   <div>
+    {additionalLinks.map((link) => (
+     <ul key={link.id}>
+      <li>{link.value}</li>
+     </ul>
+    ))}
+   </div>
   </div>
  );
 }
 
-function Preview({ generalInfoInput, previewContent }) {
+function Preview({ generalInfoInput, previewContent, additionalLinks }) {
  return (
   <section id="preview">
    <div className="page-button-wrapper">
@@ -33,7 +47,10 @@ function Preview({ generalInfoInput, previewContent }) {
     </button>
    </div>
    {previewContent === "ats" ? (
-    <ATS generalInfoInput={generalInfoInput} />
+    <ATS
+     generalInfoInput={generalInfoInput}
+     additionalLinks={additionalLinks}
+    />
    ) : (
     <Graphics generalInfoInput={generalInfoInput} />
    )}

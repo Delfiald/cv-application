@@ -16,18 +16,25 @@ function App() {
   phone: "",
  });
 
+ const [additionalLinks, setAdditionalLinks] = useState([]);
+
  return (
   <>
    <Header
     setPreviewContent={setPreviewContent}
     previewContent={previewContent}
    />
-   <GeneralInfo setInput={setGeneralInfoInput} />
+   <GeneralInfo
+    setGeneralInfoInput={setGeneralInfoInput}
+    additionalLinks={additionalLinks}
+    setAdditionalLinks={setAdditionalLinks}
+   />
    <Education />
    <Experience />
    <Preview
     generalInfoInput={generalInfoInput}
     previewContent={previewContent}
+    additionalLinks={additionalLinks}
    />
    <Footer />
   </>

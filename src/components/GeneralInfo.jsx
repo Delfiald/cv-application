@@ -1,4 +1,6 @@
-function Input({ setInput }) {
+import { useState } from "react";
+
+function Input({ setGeneralInfoInput }) {
  const inputList = [
   {
    key: 0,
@@ -32,7 +34,7 @@ function Input({ setInput }) {
 
  const handleChange = (e) => {
   const { id, value } = e.target;
-  setInput((prevInput) => ({
+  setGeneralInfoInput((prevInput) => ({
    ...prevInput,
    [id]: value,
   }));
@@ -55,15 +57,67 @@ function Input({ setInput }) {
  );
 }
 
-function GeneralInfo({ setInput }) {
+function AdditionalLink({ additionalLinks, handleRemoveLink, handleChange }) {
+ return (
+  <>
+   {additionalLinks.map((link, index) => (
+    <div key={link.id}>
+     <input
+      type="text"
+      placeholder={`Link ${index + 1}`}
+      value={index.value}
+      onChange={(e) => handleChange(e.target.value, link.id)}
+     ></input>
+     <button onClick={() => handleRemoveLink(link.id)}>
+      <i className="fas fa-minus"></i>
+     </button>
+    </div>
+   ))}
+  </>
+ );
+}
+
+function GeneralInfo({
+ setGeneralInfoInput,
+ additionalLinks,
+ setAdditionalLinks,
+}) {
+ const [idCounter, setIdCounter] = useState(1);
+ const handleAddLink = () => {
+  setAdditionalLinks((prevLinks) => [
+   ...prevLinks,
+   { id: idCounter, value: " " },
+  ]);
+  setIdCounter((prevCounter) => prevCounter + 1);
+ };
+
+ const handleRemoveLink = (id) => {
+  setAdditionalLinks((prevLinks) => prevLinks.filter((link) => link.id !== id));
+ };
+
+ const handleChange = (value, id) => {
+  setAdditionalLinks((prevLink) =>
+   prevLink.map((link) => (link.id === id ? { ...link, value: value } : link))
+  );
+ };
+
  return (
   <section id="general-info">
    <h2>General Information</h2>
-   <Input setInput={setInput} />
-   <h3>Additional Links</h3>
-   <button>
-    <i className="fas fa-plus"></i>
-   </button>
+   <div className="general-section-1">
+    <Input setGeneralInfoInput={setGeneralInfoInput} />
+   </div>
+   <div className="general-section-2">
+    <h3>Additional Links</h3>
+    <AdditionalLink
+     additionalLinks={additionalLinks}
+     handleRemoveLink={handleRemoveLink}
+     handleChange={handleChange}
+    />
+    <button onClick={handleAddLink}>
+     <i className="fas fa-plus"></i>
+    </button>
+   </div>
   </section>
  );
 }
