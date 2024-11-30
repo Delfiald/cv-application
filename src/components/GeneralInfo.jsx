@@ -1,3 +1,4 @@
+import "./generalInfo.css";
 import { useState } from "react";
 
 function Input({ setGeneralInfoInput }) {
@@ -104,10 +105,10 @@ function GeneralInfo({
  return (
   <section id="general-info">
    <h2>General Information</h2>
-   <div className="general-section-1">
+   <div className="basic-information">
     <Input setGeneralInfoInput={setGeneralInfoInput} />
    </div>
-   <div className="general-section-2">
+   <div className="additional-link">
     <h3>Additional Links</h3>
     <AdditionalLink
      additionalLinks={additionalLinks}
