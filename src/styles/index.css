@@ -14,6 +14,27 @@
 }
 
 /* Utilities */
+.input-wrapper {
+ position: relative;
+}
+
+.input-wrapper::after {
+ content: "";
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 2px;
+ background: var(--dark-color-200);
+ transform: scaleX(0);
+ transform-origin: left;
+ transition: 0.25s all ease;
+}
+
+.input-wrapper.focus::after {
+ transform: scaleX(1);
+}
+
 input {
  outline: none;
  border: 1px solid var(--light-color-600);

@@ -1,7 +1,6 @@
 import "./generalInfo.css";
-import { useState } from "react";
 
-function Input({ setGeneralInfoInput }) {
+function Input({ setGeneralInfoInput, focusedInputId, setFocusedInputId }) {
  const inputList = [
   {
    key: 0,
@@ -41,15 +40,25 @@ function Input({ setGeneralInfoInput }) {
   }));
  };
 
+ const handleFocus = (id) => {
+  setFocusedInputId(id);
+ };
+
  return (
   <>
    {inputList.map((inputItem) => (
-    <div key={inputItem.key}>
+    <div
+     key={inputItem.key}
+     className={`input-wrapper ${
+      focusedInputId === inputItem.id ? "focus" : ""
+     }`}
+    >
      <input
       type={inputItem.type}
       id={inputItem.id}
       placeholder={inputItem.placeholder}
       onChange={handleChange}
+      onFocus={() => handleFocus(inputItem.id)}
      />
      <label htmlFor={inputItem.id}>{inputItem.label}</label>
     </div>
@@ -58,17 +67,32 @@ function Input({ setGeneralInfoInput }) {
  );
 }
 
-function AdditionalLink({ additionalLinks, handleRemoveLink, handleChange }) {
+function AdditionalLink({
+ additionalLinks,
+ handleRemoveLink,
+ handleChange,
+ focusedInputId,
+ setFocusedInputId,
+}) {
+ const handleFocus = (id) => {
+  setFocusedInputId(id);
+ };
+
  return (
   <>
-   {additionalLinks.map((link, index) => (
+   {additionalLinks.links.map((link, index) => (
     <div key={link.id}>
-     <input
-      type="text"
-      placeholder={`Link ${index + 1}`}
-      value={index.value}
-      onChange={(e) => handleChange(e.target.value, link.id)}
-     ></input>
+     <div
+      className={`input-wrapper ${focusedInputId === link.id ? "focus" : ""}`}
+     >
+      <input
+       type="text"
+       placeholder={`Link ${index + 1}`}
+       value={index.value}
+       onChange={(e) => handleChange(e.target.value, link.id)}
+       onFocus={() => handleFocus(link.id)}
+      ></input>
+     </div>
      <button onClick={() => handleRemoveLink(link.id)}>
       <i className="fas fa-minus"></i>
      </button>
@@ -82,31 +106,44 @@ function GeneralInfo({
  setGeneralInfoInput,
  additionalLinks,
  setAdditionalLinks,
+ focusedInputId,
+ setFocusedInputId,
 }) {
- const [idCounter, setIdCounter] = useState(1);
  const handleAddLink = () => {
-  setAdditionalLinks((prevLinks) => [
-   ...prevLinks,
-   { id: idCounter, value: " " },
-  ]);
-  setIdCounter((prevCounter) => prevCounter + 1);
+  setAdditionalLinks((prevState) => {
+   const newLink = { id: prevState.idCounter, value: "" };
+   return {
+    idCounter: prevState.idCounter + 1,
+    links: [...prevState.links, newLink],
+   };
+  });
  };
 
  const handleRemoveLink = (id) => {
-  setAdditionalLinks((prevLinks) => prevLinks.filter((link) => link.id !== id));
+  setAdditionalLinks((prevState) => ({
+   ...prevState,
+   links: prevState.links.filter((link) => link.id !== id),
+  }));
  };
 
  const handleChange = (value, id) => {
-  setAdditionalLinks((prevLink) =>
-   prevLink.map((link) => (link.id === id ? { ...link, value: value } : link))
-  );
+  setAdditionalLinks((prevState) => ({
+   ...prevState,
+   links: prevState.links.map((link) =>
+    link.id === id ? { ...link, value: value } : link
+   ),
+  }));
  };
 
  return (
   <section id="general-info">
    <h2>General Information</h2>
    <div className="basic-information">
-    <Input setGeneralInfoInput={setGeneralInfoInput} />
+    <Input
+     setGeneralInfoInput={setGeneralInfoInput}
+     focusedInputId={focusedInputId}
+     setFocusedInputId={setFocusedInputId}
+    />
    </div>
    <div className="additional-link">
     <h3>Additional Links</h3>
@@ -114,6 +151,8 @@ function GeneralInfo({
      additionalLinks={additionalLinks}
      handleRemoveLink={handleRemoveLink}
      handleChange={handleChange}
+     focusedInputId={focusedInputId}
+     setFocusedInputId={setFocusedInputId}
     />
     <button onClick={handleAddLink}>
      <i className="fas fa-plus"></i>

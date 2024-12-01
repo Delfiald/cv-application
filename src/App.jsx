@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import GeneralInfo from "./components/GeneralInfo";
@@ -16,7 +16,25 @@ function App() {
   phone: "",
  });
 
- const [additionalLinks, setAdditionalLinks] = useState([]);
+ const [additionalLinks, setAdditionalLinks] = useState({
+  idCounter: 1,
+  links: [],
+ });
+
+ const [focusedInputId, setFocusedInputId] = useState(null);
+
+ const handleClickOutside = (e) => {
+  if (!e.target.closest(".input-wrapper")) {
+   setFocusedInputId(null);
+  }
+ };
+
+ useEffect(() => {
+  document.addEventListener("click", handleClickOutside);
+  return () => {
+   document.removeEventListener("click", handleClickOutside);
+  };
+ }, []);
 
  return (
   <>
@@ -28,6 +46,8 @@ function App() {
     setGeneralInfoInput={setGeneralInfoInput}
     additionalLinks={additionalLinks}
     setAdditionalLinks={setAdditionalLinks}
+    focusedInputId={focusedInputId}
+    setFocusedInputId={setFocusedInputId}
    />
    <Education />
    <Experience />

@@ -24,7 +24,7 @@ function ATS({ generalInfoInput, additionalLinks }) {
    <p>Email Address: {generalInfoInput.email}</p>
    <p>Phone Number: {generalInfoInput.phone}</p>
    <div>
-    {additionalLinks.map((link) => (
+    {additionalLinks.links.map((link) => (
      <ul key={link.id}>
       <li>{link.value}</li>
      </ul>
