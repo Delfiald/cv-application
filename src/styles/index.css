@@ -1,48 +1,203 @@
-*, *::after, *::before {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+*,
+*::after,
+*::before {
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+}
+
+:root {
+ --light-color-200: #fff;
+ --light-color-600: #ccc;
+
+ --dark-color-200: #000;
+}
+
+/* Utilities */
+.input-wrapper {
+ position: relative;
+}
+
+.input-wrapper::after {
+ content: "";
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 2px;
+ background: var(--dark-color-200);
+ transform: scaleX(0);
+ transform-origin: left;
+ transition: 0.25s all ease;
+}
+
+.input-wrapper.focus::after {
+ transform: scaleX(1);
+}
+
+.input-wrapper > input {
+ z-index: 2;
+}
+
+.input-wrapper > label,
+.input-wrapper > input:empty ~ label {
+ position: absolute;
+ top: 50%;
+ left: 0.5rem;
+ transform: translate(0, -50%);
+ transition: 0.35s all ease;
+ padding: 3px;
+ border-radius: 5px;
+}
+
+.input-wrapper > input:focus ~ label,
+.input-wrapper > input:not(:placeholder-shown) ~ label {
+ transform: translateY(calc(-50% - 1.5rem));
+ background: var(--light-color-200);
+ border: 1px solid var(--light-color-600);
+ font-size: 0.75rem;
+ z-index: 0;
+}
+
+input {
+ outline: none;
+ border: 1px solid var(--light-color-600);
+ padding: 1rem;
+ border-radius: 5px;
+ font-family: inherit;
+ width: 100%;
+}
+
+input::placeholder {
+ opacity: 0;
+}
+
+input:focus::placeholder {
+ opacity: 1;
+}
+
+button {
+ padding: 1rem;
+ background: var(--light-color-200);
+ outline: none;
+ border: 1px solid var(--light-color-600);
+ border-radius: 10px;
+ cursor: pointer;
+ transition: 0.35s all ease;
+ font-weight: bold;
+}
+
+button:hover {
+ opacity: 0.9;
+}
+
+ul,
+ol {
+ list-style: none;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
+ font-family: "Roboto", sans-serif;
+ line-height: 1.6;
+ overflow-x: hidden;
 }
 
 #root {
-  min-height: 100vh;
-  display: grid;
-  grid-template-areas: 'header header'
-  'general-info preview'
-  'education preview'
-  'experience preview'
-  'footer footer';
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 70px repeat(3, 1fr) 70px;
-  gap: 1rem;
+ background: #f4f4f4;
+ min-height: 100vh;
+ display: grid;
+ grid-template-areas:
+  "aside header preview"
+  "aside general-info preview"
+  "aside education preview"
+  "aside experience preview"
+  "footer footer footer";
+ grid-template-columns: min-content minmax(300px, 500px) 794px;
+ grid-template-rows: min-content repeat(3, 1fr) 70px;
+ gap: 1rem;
+ padding: 1rem;
+ justify-content: space-evenly;
 }
 
 header {
-  grid-area: header;
+ grid-area: header;
+ display: flex;
+ align-items: flex-start;
+ justify-content: center;
 }
 
-#general-info {
-  grid-area: general-info;
+header nav {
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 1rem;
+}
+
+header nav .preview-button-wrapper {
+ flex: 1;
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ align-items: center;
+ justify-content: center;
+ gap: 1rem;
+}
+
+header nav button:hover {
+ background: var(--dark-color-200);
+ color: var(--light-color-200);
+}
+
+header nav .preview-button-wrapper > button.active {
+ background: var(--dark-color-200);
+ color: var(--light-color-200);
+ pointer-events: none;
+}
+
+aside {
+ display: flex;
+ align-items: start;
+ justify-content: center;
+ grid-area: aside;
+}
+
+aside button:hover {
+ background: var(--dark-color-200);
+ color: var(--light-color-200);
 }
 
 #education {
-  grid-area: education;
+ grid-area: education;
 }
 
 #experience {
-  grid-area: experience;
+ grid-area: experience;
 }
 
 #preview {
-  grid-area: preview;
+ grid-area: preview;
+ display: flex;
+ flex-direction: column;
+ align-content: inherit;
+ justify-content: start;
+ gap: 1rem;
+}
+
+#preview .page-button-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+
+#preview > div:last-child {
+ background: var(--light-color-200);
+ padding: 1rem;
+ height: 1123px;
+ box-shadow: 1px 1px 3px var(--light-color-600);
 }
 
 footer {
-  grid-area: footer;
+ grid-area: footer;
 }
