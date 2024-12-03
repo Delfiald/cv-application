@@ -35,8 +35,9 @@ function ATS({ generalInfoInput, additionalLinks, educationInput }) {
      <ul key={input.id}>
       <li>{input.schoolName}</li>
       <li>{input.study}</li>
-      <li>{input.startYear}</li>
-      <li>{!input.isStudying ? input.endYear : "Present"}</li>
+      <li>
+       {input.startYear} to {!input.isStudying ? input.endYear : "Present"}
+      </li>
      </ul>
     ))}
    </div>

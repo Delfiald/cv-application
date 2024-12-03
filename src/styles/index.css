@@ -50,6 +50,7 @@
  transition: 0.35s all ease;
  padding: 3px;
  border-radius: 5px;
+ cursor: pointer;
 }
 
 .input-wrapper > input:focus ~ label,

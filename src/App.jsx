@@ -53,7 +53,7 @@ function App() {
   inputs: [
    {
     id: 1,
-    schoolName: "Harvard's University",
+    schoolName: "",
     study: "",
     startYear: "",
     endYear: "",

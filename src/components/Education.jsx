@@ -41,7 +41,7 @@ function Input({
        >
         <input
          type="text"
-         placeholder="School Name"
+         placeholder="Harvard University"
          id={`schoolName-${index}`}
          value={section.schoolName}
          onChange={(e) =>
@@ -58,7 +58,7 @@ function Input({
        >
         <input
          type="text"
-         placeholder="Name of Study"
+         placeholder="Computer Science"
          id={`study-${index}`}
          value={section.study}
          onChange={(e) => handleChange(section.id, "study", e.target.value)}
@@ -94,16 +94,18 @@ function Input({
          <label htmlFor={`endYear-${index}`}>End Year</label>
         </div>
        ) : null}
-       <button onClick={() => setAccordionOpenId(null)}>Cancel</button>
-       {educationInput.inputs.length > 1 && (
-        <button onClick={() => handleRemoveEducation(section.id)}>
-         <i className="fas fa-trash"></i>
-        </button>
-       )}
+       <div className="input-action">
+        <button onClick={() => setAccordionOpenId(null)}>Cancel</button>
+        {educationInput.inputs.length > 1 && (
+         <button onClick={() => handleRemoveEducation(section.id)}>
+          <i className="fas fa-trash"></i>
+         </button>
+        )}
+       </div>
       </div>
      ) : (
       <button onClick={() => handleAccordion(section.id)}>
-       {section.schoolName}
+       {section.schoolName === "" ? "School Name" : section.schoolName}
       </button>
      )}
     </div>
