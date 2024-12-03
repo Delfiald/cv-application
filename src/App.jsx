@@ -62,6 +62,33 @@ function App() {
   ],
  });
 
+ const [experienceInput, setExperienceInput] = useState({
+  idCounter: 1,
+  accordOpenId: 1,
+  inputs: [
+   {
+    id: 1,
+    company: "",
+    position: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    descriptions: [
+     {
+      id: 1,
+      description: "",
+     },
+     {
+      id: 2,
+      description: "",
+     },
+    ],
+    isWorking: false,
+    descId: 2,
+   },
+  ],
+ });
+
  const [additionalLinks, setAdditionalLinks] = useState({
   idCounter: 1,
   links: [],
@@ -69,7 +96,7 @@ function App() {
 
  const [focusedInputId, setFocusedInputId] = useState(null);
 
- const [accordionOpenId, setAccordionOpenId] = useState(null);
+ const [accordionOpenId, setAccordionOpenId] = useState(1);
 
  const handleClickOutside = (e) => {
   if (!e.target.closest(".input-wrapper")) {
@@ -105,12 +132,18 @@ function App() {
     accordionOpenId={accordionOpenId}
     setAccordionOpenId={setAccordionOpenId}
    />
-   <Experience />
+   <Experience
+    experienceInput={experienceInput}
+    setExperienceInput={setExperienceInput}
+    focusedInputId={focusedInputId}
+    setFocusedInputId={setFocusedInputId}
+   />
    <Preview
     generalInfoInput={generalInfoInput}
     previewContent={previewContent}
     additionalLinks={additionalLinks}
     educationInput={educationInput}
+    experienceInput={experienceInput}
    />
    <Footer />
   </>
