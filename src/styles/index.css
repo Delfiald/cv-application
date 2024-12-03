@@ -50,6 +50,7 @@
  transition: 0.35s all ease;
  padding: 3px;
  border-radius: 5px;
+ cursor: pointer;
 }
 
 .input-wrapper > input:focus ~ label,
@@ -115,7 +116,7 @@ body {
   "aside experience preview"
   "footer footer footer";
  grid-template-columns: min-content minmax(300px, 500px) 794px;
- grid-template-rows: min-content repeat(3, 1fr) 70px;
+ grid-template-rows: min-content repeat(3, min-content) 70px;
  gap: 1rem;
  padding: 1rem;
  justify-content: space-evenly;
@@ -168,8 +169,8 @@ aside button:hover {
  color: var(--light-color-200);
 }
 
-#education {
- grid-area: education;
+#root > section:not(#preview) {
+ padding: 1rem;
 }
 
 #experience {

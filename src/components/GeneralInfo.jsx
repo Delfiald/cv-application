@@ -32,8 +32,7 @@ function Input({ setGeneralInfoInput, focusedInputId, setFocusedInputId }) {
   },
  ];
 
- const handleChange = (e) => {
-  const { id, value } = e.target;
+ const handleChange = (id, value) => {
   setGeneralInfoInput((prevInput) => ({
    ...prevInput,
    [id]: value,
@@ -57,7 +56,7 @@ function Input({ setGeneralInfoInput, focusedInputId, setFocusedInputId }) {
       type={inputItem.type}
       id={inputItem.id}
       placeholder={inputItem.placeholder}
-      onChange={handleChange}
+      onChange={(e) => handleChange(inputItem.id, e.target.value)}
       onFocus={() => handleFocus(inputItem.id)}
      />
      <label htmlFor={inputItem.id}>{inputItem.label}</label>
@@ -88,7 +87,6 @@ function AdditionalLink({
       <input
        type="text"
        placeholder={`Link ${index + 1}`}
-       value={index.value}
        onChange={(e) => handleChange(e.target.value, link.id)}
        onFocus={() => handleFocus(link.id)}
       ></input>
