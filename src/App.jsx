@@ -16,12 +16,60 @@ function App() {
   phone: "",
  });
 
+ //  const [educationInput, setEducationInput] = useState({
+ //   idCounter: 1,
+ //   inputs: [
+ //    {
+ //     id: 1,
+ //     fields: [
+ //      {
+ //       id: "schoolName-1",
+ //       label: "School Name",
+ //       value: "",
+ //       type: "text",
+ //       placeholder: "Harvard University",
+ //      },
+ //      {
+ //       id: "study-1",
+ //       label: "Title of Study",
+ //       value: "",
+ //       type: "text",
+ //       placeholder: "Computer Science",
+ //      },
+ //      {
+ //       id: "date-1",
+ //       label: "Date of Study",
+ //       value: "2019-12-10",
+ //       type: "date",
+ //       placeholder: "",
+ //      },
+ //     ],
+ //    },
+ //   ],
+ //  });
+
+ const [educationInput, setEducationInput] = useState({
+  idCounter: 1,
+  inputs: [
+   {
+    id: 1,
+    schoolName: "Harvard's University",
+    study: "",
+    startYear: "",
+    endYear: "",
+    isStudying: false,
+   },
+  ],
+ });
+
  const [additionalLinks, setAdditionalLinks] = useState({
   idCounter: 1,
   links: [],
  });
 
  const [focusedInputId, setFocusedInputId] = useState(null);
+
+ const [accordionOpenId, setAccordionOpenId] = useState(null);
 
  const handleClickOutside = (e) => {
   if (!e.target.closest(".input-wrapper")) {
@@ -49,12 +97,20 @@ function App() {
     focusedInputId={focusedInputId}
     setFocusedInputId={setFocusedInputId}
    />
-   <Education />
+   <Education
+    educationInput={educationInput}
+    setEducationInput={setEducationInput}
+    focusedInputId={focusedInputId}
+    setFocusedInputId={setFocusedInputId}
+    accordionOpenId={accordionOpenId}
+    setAccordionOpenId={setAccordionOpenId}
+   />
    <Experience />
    <Preview
     generalInfoInput={generalInfoInput}
     previewContent={previewContent}
     additionalLinks={additionalLinks}
+    educationInput={educationInput}
    />
    <Footer />
   </>

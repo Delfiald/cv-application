@@ -14,7 +14,7 @@ function Graphics({ generalInfoInput }) {
  );
 }
 
-function ATS({ generalInfoInput, additionalLinks }) {
+function ATS({ generalInfoInput, additionalLinks, educationInput }) {
  return (
   <div id="ats">
    <h2>ATS</h2>
@@ -30,11 +30,26 @@ function ATS({ generalInfoInput, additionalLinks }) {
      </ul>
     ))}
    </div>
+   <div>
+    {educationInput.inputs.map((input) => (
+     <ul key={input.id}>
+      <li>{input.schoolName}</li>
+      <li>{input.study}</li>
+      <li>{input.startYear}</li>
+      <li>{!input.isStudying ? input.endYear : "Present"}</li>
+     </ul>
+    ))}
+   </div>
   </div>
  );
 }
 
-function Preview({ generalInfoInput, previewContent, additionalLinks }) {
+function Preview({
+ generalInfoInput,
+ previewContent,
+ additionalLinks,
+ educationInput,
+}) {
  return (
   <section id="preview">
    <div className="page-button-wrapper">
@@ -50,6 +65,7 @@ function Preview({ generalInfoInput, previewContent, additionalLinks }) {
     <ATS
      generalInfoInput={generalInfoInput}
      additionalLinks={additionalLinks}
+     educationInput={educationInput}
     />
    ) : (
     <Graphics generalInfoInput={generalInfoInput} />
