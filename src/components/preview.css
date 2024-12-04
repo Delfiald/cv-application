@@ -1,0 +1,108 @@
+#preview {
+ grid-area: preview;
+ display: flex;
+ flex-direction: column;
+ align-content: inherit;
+ justify-content: start;
+ gap: 1rem;
+}
+
+#preview .page-button-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+
+#preview > div:last-child {
+ background: var(--light-color-200);
+ padding: 1rem;
+ height: 1123px;
+ box-shadow: 1px 1px 3px var(--light-color-600);
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ flex-direction: column;
+ gap: 1.5rem;
+}
+
+#preview > div:last-child > section {
+ width: 100%;
+}
+
+#preview .contact-information {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+}
+
+#preview .contact-information > div {
+ font-size: 12px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 7px;
+}
+
+#preview .contact-information .link-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+#preview hr {
+ border: none;
+ height: 1px;
+ background: var(--dark-color-200);
+}
+
+#preview .skill .skill-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ gap: 7px;
+ font-size: 14px;
+}
+
+#preview .skill .skill-wrapper .skill-name {
+ font-weight: bold;
+}
+
+#preview .experiences .experience-wrapper:not(.experience-wrapper:last-child) {
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ flex-direction: column;
+ margin-bottom: 1rem;
+}
+
+#preview .experiences .experience-wrapper .experience-info {
+ width: 100%;
+ display: grid;
+ grid-template-columns: repeat(2, min-content);
+ justify-content: space-between;
+ white-space: nowrap;
+}
+
+#preview .experiences .experience-wrapper .experience-info .position {
+ font-weight: bold;
+}
+
+#preview .experiences .experience-wrapper .experience-info .location {
+ justify-self: end;
+ font-style: italic;
+}
+
+#preview .experiences .experience-wrapper .experience-info .company {
+ font-style: italic;
+}
+
+#preview .experiences .experience-wrapper .experience-details {
+ width: 100%;
+ font-size: 14px;
+}
+
+#preview .experiences .experience-wrapper .experience-details ul {
+ list-style: disc;
+ margin-left: 2rem;
+}

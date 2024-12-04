@@ -164,7 +164,7 @@ function Input({
           onFocus={() => handleFocus(section.id, "endDate")}
           onChange={(e) => handleChange(section.id, "endDate", e.target.value)}
          />
-         <label htmlFor={`endDate-${index}`}>Start Date</label>
+         <label htmlFor={`endDate-${index}`}>End Date</label>
         </div>
        )}
        <div

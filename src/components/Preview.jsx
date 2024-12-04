@@ -1,3 +1,25 @@
+import React from "react";
+import "./preview.css";
+
+const convertMonth = (inputValue) => {
+ const [year, month] = inputValue.split("-");
+ const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+ ];
+ return `${monthNames[Number(month) - 1]} ${year}`;
+};
+
 function Graphics({ generalInfoInput }) {
  return (
   <div id="graphics">
@@ -22,70 +44,122 @@ function ATS({
  skillInput,
  projectInput,
 }) {
+ const firstName = generalInfoInput.firstName;
+ const lastName = generalInfoInput.lastName;
+ const email = generalInfoInput.email;
+ const phone = generalInfoInput.phone;
  return (
   <div id="ats">
-   <h2>ATS</h2>
-   <p>
-    Name: {generalInfoInput.firstName} {generalInfoInput.lastName}
-   </p>
-   <p>Email Address: {generalInfoInput.email}</p>
-   <p>Phone Number: {generalInfoInput.phone}</p>
-   <div>
-    {additionalLinks.links.map((link) => (
-     <ul key={link.id}>
-      <li>{link.value}</li>
-     </ul>
+   <section className="contact-information">
+    <h1>
+     {firstName === "" ? "Name" : firstName}{" "}
+     {lastName === "" ? "Name" : lastName}
+    </h1>
+    <div>
+     <a href={`mailto:${email}`}>{email === "" ? "Email" : email}</a>
+     {" | "}
+     <p>{phone === "" ? "Phone" : phone}</p>
+     {" | "}
+     {additionalLinks.links.map((link, index) => (
+      <React.Fragment key={link.id}>
+       {index !== 0 && " | "}
+       <a href={link.value}>
+        {link.value === "" ? `Link ${index + 1}` : link.value}
+       </a>
+      </React.Fragment>
+     ))}
+    </div>
+   </section>
+   <section className="skill">
+    <h2>Skills</h2>
+    <hr />
+    {skillInput.inputs.map((skill) => (
+     <div key={skill.id} className="skill-wrapper">
+      <div className="skill-name">
+       {skill.skillName === "" ? "Skill Name" : skill.skillName}:
+      </div>
+      <div className="skill-details">
+       {skill.skillDetails === "" ? "Skill Details" : skill.skillDetails}
+      </div>
+     </div>
     ))}
-   </div>
-   <div>
-    {educationInput.inputs.map((input) => (
-     <ul key={input.id}>
-      <li>{input.schoolName}</li>
-      <li>{input.study}</li>
-      <li>
-       {input.startYear} to {!input.isStudying ? input.endYear : "Present"}
-      </li>
-     </ul>
-    ))}
-   </div>
-   <div>
-    {experienceInput.inputs.map((input) => (
-     <ul key={input.id}>
-      <li>{input.company}</li>
-      <li>{input.position}</li>
-      <li>
-       {input.startDate} - {!input.isWorking ? input.endDate : "Present"}
-      </li>
-      <li>{input.location}</li>
-      <li>
+   </section>
+   <section className="experiences">
+    <h2>Experiences</h2>
+    <hr />
+    {experienceInput.inputs.map((experience) => (
+     <div key={experience.id} className="experience-wrapper">
+      <div className="experience-info">
+       <div className="position">
+        {experience.position === "" ? "Position" : experience.position}
+       </div>
+       <div className="date">
+        {experience.startDate === ""
+         ? "Start Date"
+         : convertMonth(experience.startDate)}{" "}
+        &minus;{" "}
+        {!experience.isWorking
+         ? experience.endDate === ""
+           ? "End Date"
+           : convertMonth(experience.endDate)
+         : "Present"}
+       </div>
+       <div className="company">
+        {experience.company === "" ? "Company" : experience.company}
+       </div>
+       <div className="location">
+        {experience.location === "" ? "Location" : experience.location}
+       </div>
+      </div>
+      <div className="experience-details">
        <ul>
-        {input.descriptions.map((desc) => (
-         <li key={desc.id}>{desc.description}</li>
+        {experience.descriptions.map((description, index) => (
+         <li key={description.id}>
+          {description.description === ""
+           ? `Description ${index + 1}`
+           : description.description}
+         </li>
         ))}
        </ul>
-      </li>
-     </ul>
+      </div>
+     </div>
     ))}
-   </div>
-   <div>
-    {skillInput.inputs.map((input) => (
-     <ul key={input.id}>
-      <li>{input.skillName}</li>
-      <li>{input.skillDetails}</li>
-     </ul>
+   </section>
+   <section className="educations">
+    <h2>Educations</h2>
+    <hr />
+    {educationInput.inputs.map((education) => (
+     <div key={education.id} className="education-wrapper">
+      <div className="school-name">
+       {education.schoolName === "" ? "School Name" : education.schoolName}
+      </div>
+      <div className="date"></div>
+      <div className="degree"></div>
+      <div className="gpa"></div>
+     </div>
     ))}
-   </div>
-   <div>
-    {projectInput.inputs.map((input) => (
-     <ul key={input.id}>
-      <li>{input.projectName}</li>
-      <li>{input.projectStack}</li>
-      <li>
-       {input.startDate} - {input.endDate}
-      </li>
-     </ul>
+   </section>
+   <section className="projects">
+    <h2>Projects</h2>
+    <hr />
+    {projectInput.inputs.map((project) => (
+     <div key={project.id} className="project-wrapper">
+      <div className="project-name">
+       {project.projectName === "" ? "Project Name" : project.projectName}
+      </div>
+      <div className="project-stack">
+       {project.projectStack === "" ? "Project Stack" : project.projectStack}
+      </div>
+      <div className="date">
+       {project.startDate === ""
+        ? "Start Date"
+        : convertMonth(project.startDate)}{" "}
+       &minus;{" "}
+       {project.endDate === "" ? "End Date" : convertMonth(project.endDate)}
+      </div>
+     </div>
     ))}
-   </div>
+   </section>
   </div>
  );
 }
