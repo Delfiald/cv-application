@@ -19,6 +19,7 @@ function ATS({
  additionalLinks,
  educationInput,
  experienceInput,
+ skillInput,
 }) {
  return (
   <div id="ats">
@@ -65,6 +66,14 @@ function ATS({
      </ul>
     ))}
    </div>
+   <div>
+    {skillInput.inputs.map((input) => (
+     <ul key={input.id}>
+      <li>{input.skillName}</li>
+      <li>{input.skillDetails}</li>
+     </ul>
+    ))}
+   </div>
   </div>
  );
 }
@@ -75,6 +84,7 @@ function Preview({
  additionalLinks,
  educationInput,
  experienceInput,
+ skillInput,
 }) {
  return (
   <section id="preview">
@@ -93,6 +103,7 @@ function Preview({
      additionalLinks={additionalLinks}
      educationInput={educationInput}
      experienceInput={experienceInput}
+     skillInput={skillInput}
     />
    ) : (
     <Graphics generalInfoInput={generalInfoInput} />
