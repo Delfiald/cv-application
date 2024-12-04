@@ -14,7 +14,12 @@ function Graphics({ generalInfoInput }) {
  );
 }
 
-function ATS({ generalInfoInput, additionalLinks, educationInput }) {
+function ATS({
+ generalInfoInput,
+ additionalLinks,
+ educationInput,
+ experienceInput,
+}) {
  return (
   <div id="ats">
    <h2>ATS</h2>
@@ -41,6 +46,25 @@ function ATS({ generalInfoInput, additionalLinks, educationInput }) {
      </ul>
     ))}
    </div>
+   <div>
+    {experienceInput.inputs.map((input) => (
+     <ul key={input.id}>
+      <li>{input.company}</li>
+      <li>{input.position}</li>
+      <li>
+       {input.startDate} - {!input.isWorking ? input.endDate : "Present"}
+      </li>
+      <li>{input.location}</li>
+      <li>
+       <ul>
+        {input.descriptions.map((desc) => (
+         <li key={desc.id}>{desc.description}</li>
+        ))}
+       </ul>
+      </li>
+     </ul>
+    ))}
+   </div>
   </div>
  );
 }
@@ -50,6 +74,7 @@ function Preview({
  previewContent,
  additionalLinks,
  educationInput,
+ experienceInput,
 }) {
  return (
   <section id="preview">
@@ -67,6 +92,7 @@ function Preview({
      generalInfoInput={generalInfoInput}
      additionalLinks={additionalLinks}
      educationInput={educationInput}
+     experienceInput={experienceInput}
     />
    ) : (
     <Graphics generalInfoInput={generalInfoInput} />

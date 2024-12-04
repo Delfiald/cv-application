@@ -19,6 +19,7 @@ function Input({
  };
 
  const handleAccordion = (id) => {
+  console.log(id);
   setAccordionOpenId(id);
  };
 
