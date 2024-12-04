@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import GeneralInfo from "./components/GeneralInfo";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
+import Skill from "./components/Skill";
 import Preview from "./components/Preview";
 
 function App() {
@@ -14,6 +15,11 @@ function App() {
   lastName: "",
   email: "",
   phone: "",
+ });
+
+ const [additionalLinks, setAdditionalLinks] = useState({
+  idCounter: 1,
+  links: [],
  });
 
  //  const [educationInput, setEducationInput] = useState({
@@ -89,14 +95,20 @@ function App() {
   ],
  });
 
- const [additionalLinks, setAdditionalLinks] = useState({
+ const [skillInput, setSkillInput] = useState({
   idCounter: 1,
-  links: [],
+  accordOpenId: 1,
+  inputs: [
+   {
+    id: 1,
+    skillName: "",
+    skillDetails: "",
+   },
+  ],
  });
 
- const [focusedInputId, setFocusedInputId] = useState(null);
-
  const [accordionOpenId, setAccordionOpenId] = useState(1);
+ const [focusedInputId, setFocusedInputId] = useState(null);
 
  const handleClickOutside = (e) => {
   if (!e.target.closest(".input-wrapper")) {
@@ -138,12 +150,19 @@ function App() {
     focusedInputId={focusedInputId}
     setFocusedInputId={setFocusedInputId}
    />
+   <Skill
+    skillInput={skillInput}
+    setSkillInput={setSkillInput}
+    focusedInputId={focusedInputId}
+    setFocusedInputId={setFocusedInputId}
+   />
    <Preview
     generalInfoInput={generalInfoInput}
     previewContent={previewContent}
     additionalLinks={additionalLinks}
     educationInput={educationInput}
     experienceInput={experienceInput}
+    skillInput={skillInput}
    />
    <Footer />
   </>

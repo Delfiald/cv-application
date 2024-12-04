@@ -133,9 +133,10 @@ body {
   "aside general-info preview"
   "aside education preview"
   "aside experience preview"
+  "aside skill preview"
   "footer footer footer";
  grid-template-columns: min-content minmax(300px, 500px) 794px;
- grid-template-rows: min-content repeat(3, min-content) 70px;
+ grid-template-rows: min-content repeat(4, min-content) 70px;
  gap: 1rem;
  padding: 1rem;
  justify-content: space-evenly;
