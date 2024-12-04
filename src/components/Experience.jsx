@@ -1,3 +1,5 @@
+import "./experience.css";
+
 function Input({
  experienceInput,
  setExperienceInput,
@@ -182,24 +184,25 @@ function Input({
        </div>
        <div className="description-wrapper">
         {section.descriptions.map((desc, descIndex) => (
-         <div
-          key={desc.id}
-          className={`input-wrapper ${
-           focusedInputId === `description-${index}-${desc.id}` ? "focus" : ""
-          }`}
-         >
-          <textarea
-           placeholder="Tracking Last Location's Piece of Eden"
-           id={`description-${index}-${descIndex}`}
-           value={desc.description}
-           onFocus={() => handleFocus(desc.id, `description-${index}`)}
-           onChange={(e) =>
-            handleDescChange(section.id, e.target.value, desc.id)
-           }
-          ></textarea>
-          <label htmlFor={`description-${index}-${descIndex}`}>
-           Description {descIndex + 1}
-          </label>
+         <div key={desc.id}>
+          <div
+           className={`input-wrapper ${
+            focusedInputId === `description-${index}-${desc.id}` ? "focus" : ""
+           }`}
+          >
+           <textarea
+            placeholder="Tracking Last Location's Piece of Eden"
+            id={`description-${index}-${descIndex}`}
+            value={desc.description}
+            onFocus={() => handleFocus(desc.id, `description-${index}`)}
+            onChange={(e) =>
+             handleDescChange(section.id, e.target.value, desc.id)
+            }
+           ></textarea>
+           <label htmlFor={`description-${index}-${descIndex}`}>
+            Description {descIndex + 1}
+           </label>
+          </div>
           {section.descriptions.length > 1 && (
            <button onClick={() => handleRemoveDesc(section.id, desc.id)}>
             <i className="fas fa-minus"></i>
@@ -211,12 +214,14 @@ function Input({
          <i className="fas fa-plus"></i>
         </button>
        </div>
-       <button onClick={handleCloseAccordion}>Cancel</button>
-       {experienceInput.inputs.length > 1 && (
-        <button onClick={() => handleRemoveExperience(section.id)}>
-         <i className="fas fa-trash"></i>
-        </button>
-       )}
+       <div className="input-action">
+        <button onClick={handleCloseAccordion}>Cancel</button>
+        {experienceInput.inputs.length > 1 && (
+         <button onClick={() => handleRemoveExperience(section.id)}>
+          <i className="fas fa-trash"></i>
+         </button>
+        )}
+       </div>
       </div>
      ) : (
       <button onClick={() => handleAccordion(section.id)}>
