@@ -5,6 +5,7 @@ import GeneralInfo from "./components/GeneralInfo";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Skill from "./components/Skill";
+import Projects from "./components/Projects";
 import Preview from "./components/Preview";
 
 function App() {
@@ -107,6 +108,20 @@ function App() {
   ],
  });
 
+ const [projectInput, setProjectInput] = useState({
+  idCounter: 1,
+  accordOpenId: 1,
+  inputs: [
+   {
+    id: 1,
+    projectName: "",
+    projectStack: "",
+    startDate: "",
+    endDate: "",
+   },
+  ],
+ });
+
  const [accordionOpenId, setAccordionOpenId] = useState(1);
  const [focusedInputId, setFocusedInputId] = useState(null);
 
@@ -156,6 +171,12 @@ function App() {
     focusedInputId={focusedInputId}
     setFocusedInputId={setFocusedInputId}
    />
+   <Projects
+    projectInput={projectInput}
+    setProjectInput={setProjectInput}
+    focusedInputId={focusedInputId}
+    setFocusedInputId={setFocusedInputId}
+   />
    <Preview
     generalInfoInput={generalInfoInput}
     previewContent={previewContent}
@@ -163,6 +184,7 @@ function App() {
     educationInput={educationInput}
     experienceInput={experienceInput}
     skillInput={skillInput}
+    projectInput={projectInput}
    />
    <Footer />
   </>
