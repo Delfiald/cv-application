@@ -20,6 +20,7 @@ function ATS({
  educationInput,
  experienceInput,
  skillInput,
+ projectInput,
 }) {
  return (
   <div id="ats">
@@ -74,6 +75,17 @@ function ATS({
      </ul>
     ))}
    </div>
+   <div>
+    {projectInput.inputs.map((input) => (
+     <ul key={input.id}>
+      <li>{input.projectName}</li>
+      <li>{input.projectStack}</li>
+      <li>
+       {input.startDate} - {input.endDate}
+      </li>
+     </ul>
+    ))}
+   </div>
   </div>
  );
 }
@@ -85,6 +97,7 @@ function Preview({
  educationInput,
  experienceInput,
  skillInput,
+ projectInput,
 }) {
  return (
   <section id="preview">
@@ -104,6 +117,7 @@ function Preview({
      educationInput={educationInput}
      experienceInput={experienceInput}
      skillInput={skillInput}
+     projectInput={projectInput}
     />
    ) : (
     <Graphics generalInfoInput={generalInfoInput} />
