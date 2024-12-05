@@ -153,7 +153,7 @@ function GeneralInfo({
      setFocusedInputId={setFocusedInputId}
     />
     <button onClick={handleAddLink}>
-     <i className="fas fa-plus"></i>
+     <i className="fas fa-plus"></i> Add Link
     </button>
    </div>
   </section>

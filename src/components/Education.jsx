@@ -129,11 +129,9 @@ function Input({
        </div>
        <div className="input-action">
         <button onClick={handleCloseAccordion}>Cancel</button>
-        {educationInput.inputs.length > 1 && (
-         <button onClick={() => handleRemoveEducation(section.id)}>
-          <i className="fas fa-trash"></i>
-         </button>
-        )}
+        <button onClick={() => handleRemoveEducation(section.id)}>
+         <i className="fas fa-trash"></i>
+        </button>
        </div>
       </div>
      ) : (
@@ -192,7 +190,7 @@ function Education({
      handleRemoveEducation={handleRemoveEducation}
     />
     <button onClick={handleAddEducation}>
-     <i className="fas fa-plus"></i>
+     <i className="fas fa-plus"></i> Add Education
     </button>
    </div>
   </section>

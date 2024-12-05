@@ -188,11 +188,9 @@ function Input({
        </div>
        <div className="input-action">
         <button onClick={handleCloseAccordion}>Cancel</button>
-        {projectInput.inputs.length > 1 && (
-         <button onClick={() => handleRemoveProject(project.id)}>
-          <i className="fas fa-trash"></i>
-         </button>
-        )}
+        <button onClick={() => handleRemoveProject(project.id)}>
+         <i className="fas fa-trash"></i>
+        </button>
        </div>
       </div>
      ) : (
@@ -255,7 +253,7 @@ function Projects({
      handleRemoveProject={handleRemoveProject}
     />
     <button onClick={handleAddProject}>
-     <i className="fas fa-plus"></i>
+     <i className="fas fa-plus"></i> Add Projects
     </button>
    </div>
   </section>

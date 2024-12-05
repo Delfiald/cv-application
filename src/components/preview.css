@@ -36,8 +36,23 @@
  flex-direction: column;
 }
 
+#preview h1 {
+ font-size: 20pt;
+}
+
+#preview h2 {
+ font-size: 14pt;
+}
+
+#preview #ats {
+ font-family: "Times New Roman", Times, serif;
+}
+
+#preview #ats *:not(h1, h2) {
+ font-size: 12pt;
+}
+
 #preview .contact-information > div {
- font-size: 12px;
  display: flex;
  align-items: center;
  justify-content: center;
@@ -61,7 +76,6 @@
  align-items: center;
  justify-content: start;
  gap: 7px;
- font-size: 14px;
 }
 
 #preview .skill .skill-wrapper .skill-name {
@@ -102,7 +116,6 @@
 
 #preview .experiences .experience-wrapper .experience-details {
  width: 100%;
- font-size: 14px;
 }
 
 #preview .experiences .experience-wrapper .experience-details ul,
@@ -131,10 +144,6 @@
 
 #preview .educations .education-wrapper .school-information {
  font-weight: bold;
-}
-
-#preview .educations .education-wrapper .school-detail {
- font-size: 14px;
 }
 
 #preview .projects .project-wrapper {

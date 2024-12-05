@@ -216,11 +216,9 @@ function Input({
        </div>
        <div className="input-action">
         <button onClick={handleCloseAccordion}>Cancel</button>
-        {experienceInput.inputs.length > 1 && (
-         <button onClick={() => handleRemoveExperience(section.id)}>
-          <i className="fas fa-trash"></i>
-         </button>
-        )}
+        <button onClick={() => handleRemoveExperience(section.id)}>
+         <i className="fas fa-trash"></i>
+        </button>
        </div>
       </div>
      ) : (
@@ -286,7 +284,7 @@ function Experience({
      handleRemoveExperience={handleRemoveExperience}
     />
     <button onClick={handleAddExperience}>
-     <i className="fas fa-plus"></i>
+     <i className="fas fa-plus"></i> Add Experience
     </button>
    </div>
   </section>
