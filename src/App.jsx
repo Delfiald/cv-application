@@ -57,14 +57,16 @@ function App() {
 
  const [educationInput, setEducationInput] = useState({
   idCounter: 1,
+  accordOpenId: 1,
   inputs: [
    {
     id: 1,
     schoolName: "",
-    study: "",
-    startYear: "",
-    endYear: "",
+    degree: "",
+    startDate: "",
+    endDate: "",
     isStudying: false,
+    gpa: "",
    },
   ],
  });
@@ -118,6 +120,13 @@ function App() {
     projectStack: "",
     startDate: "",
     endDate: "",
+    detailsId: 1,
+    details: [
+     {
+      id: 1,
+      detail: "",
+     },
+    ],
    },
   ],
  });

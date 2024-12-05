@@ -128,23 +128,23 @@ function Input({
        </div>
        <div
         className={`input-wrapper ${
-         focusedInputId === `startDate-${section.id}` ? "focus" : ""
+         focusedInputId === `startDate-experience-${section.id}` ? "focus" : ""
         }`}
        >
         <input
          type="month"
-         id={`startDate-${index}`}
+         id={`startDate-experience-${index}`}
          value={section.startDate}
-         onFocus={() => handleFocus(section.id, "startDate")}
+         onFocus={() => handleFocus(section.id, "startDate-experience")}
          onChange={(e) => handleChange(section.id, "startDate", e.target.value)}
         />
-        <label htmlFor={`startDate-${index}`}>Start Date</label>
+        <label htmlFor={`startDate-experience-${index}`}>Start Date</label>
        </div>
        <div className="input-wrapper">
         <input
          type="checkbox"
          id={`is-working-${index}`}
-         value={section.isWorking}
+         checked={section.isWorking}
          onChange={(e) =>
           handleChange(section.id, "isWorking", e.target.checked)
          }
@@ -154,17 +154,17 @@ function Input({
        {!section.isWorking && (
         <div
          className={`input-wrapper ${
-          focusedInputId === `endDate-${section.id}` ? "focus" : ""
+          focusedInputId === `endDate-experience-${section.id}` ? "focus" : ""
          }`}
         >
          <input
           type="month"
-          id={`endDate-${index}`}
+          id={`endDate-experience-${index}`}
           value={section.endDate}
-          onFocus={() => handleFocus(section.id, "endDate")}
+          onFocus={() => handleFocus(section.id, "endDate-experience")}
           onChange={(e) => handleChange(section.id, "endDate", e.target.value)}
          />
-         <label htmlFor={`endDate-${index}`}>End Date</label>
+         <label htmlFor={`endDate-experience-${index}`}>End Date</label>
         </div>
        )}
        <div

@@ -68,11 +68,14 @@
  font-weight: bold;
 }
 
-#preview .experiences .experience-wrapper:not(.experience-wrapper:last-child) {
+#preview .experiences .experience-wrapper {
  display: flex;
  align-items: flex-start;
  justify-content: start;
  flex-direction: column;
+}
+
+#preview .experiences .experience-wrapper:not(.experience-wrapper:last-child) {
  margin-bottom: 1rem;
 }
 
@@ -102,7 +105,68 @@
  font-size: 14px;
 }
 
-#preview .experiences .experience-wrapper .experience-details ul {
+#preview .experiences .experience-wrapper .experience-details ul,
+#preview .projects .project-wrapper .project-details ul {
  list-style: disc;
  margin-left: 2rem;
+}
+
+#preview .educations .education-wrapper {
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ flex-direction: column;
+}
+
+#preview .educations .education-wrapper:not(.education-wrapper:last-child) {
+ margin-bottom: 1rem;
+}
+
+#preview .educations .education-wrapper > div {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 7px;
+}
+
+#preview .educations .education-wrapper .school-information {
+ font-weight: bold;
+}
+
+#preview .educations .education-wrapper .school-detail {
+ font-size: 14px;
+}
+
+#preview .projects .project-wrapper {
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ flex-direction: column;
+}
+
+#preview .projects .project-wrapper:not(.project-wrapper:last-child) {
+ margin-bottom: 1rem;
+}
+
+#preview .projects .project-wrapper .project-overview {
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ width: 100%;
+}
+
+#preview .projects .project-wrapper .project-overview .project-information {
+ flex: 1;
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ gap: 7px;
+}
+
+#preview .projects .project-wrapper .project-overview .project-name {
+ font-weight: bold;
+}
+
+#preview .projects .project-wrapper .project-overview .project-stack {
+ font-style: italic;
 }

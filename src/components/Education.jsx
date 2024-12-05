@@ -6,8 +6,6 @@ function Input({
  focusedInputId,
  setFocusedInputId,
  handleRemoveEducation,
- accordionOpenId,
- setAccordionOpenId,
 }) {
  const handleChange = (id, field, value) => {
   setEducationInput((prevState) => ({
@@ -19,8 +17,17 @@ function Input({
  };
 
  const handleAccordion = (id) => {
-  console.log(id);
-  setAccordionOpenId(id);
+  setEducationInput((prevState) => ({
+   ...prevState,
+   accordOpenId: id,
+  }));
+ };
+
+ const handleCloseAccordion = () => {
+  setEducationInput((prevState) => ({
+   ...prevState,
+   accordOpenId: null,
+  }));
  };
 
  const handleFocus = (id, fieldName) => {
@@ -31,9 +38,11 @@ function Input({
    {educationInput.inputs.map((section, index) => (
     <div
      key={section.id}
-     className={`study-section ${accordionOpenId === section.id ? "open" : ""}`}
+     className={`study-section ${
+      educationInput.accordOpenId === section.id ? "open" : ""
+     }`}
     >
-     {accordionOpenId === section.id ? (
+     {educationInput.accordOpenId === section.id ? (
       <div className="accordion-wrapper">
        <div
         className={`input-wrapper ${
@@ -54,31 +63,38 @@ function Input({
        </div>
        <div
         className={`input-wrapper ${
-         focusedInputId === `study-${section.id}` ? "focus" : ""
+         focusedInputId === `degree-${section.id}` ? "focus" : ""
         }`}
        >
         <input
          type="text"
          placeholder="Computer Science"
-         id={`study-${index}`}
-         value={section.study}
-         onChange={(e) => handleChange(section.id, "study", e.target.value)}
-         onFocus={() => handleFocus(section.id, "study")}
+         id={`degree-${index}`}
+         value={section.degree}
+         onChange={(e) => handleChange(section.id, "degree", e.target.value)}
+         onFocus={() => handleFocus(section.id, "degree")}
         />
-        <label htmlFor={`study-${index}`}>Name of Study</label>
+        <label htmlFor={`degree-${index}`}>Name of Degree</label>
        </div>
-       <div className={`input-wrapper`}>
+       <div
+        className={`input-wrapper ${
+         focusedInputId === `startDate-education-${section.id}` ? "focus" : ""
+        }`}
+       >
         <input
          type="month"
-         id={`startYear-${index}`}
-         onChange={(e) => handleChange(section.id, "startYear", e.target.value)}
+         id={`startDate-education-${index}`}
+         value={section.startDate}
+         onFocus={() => handleFocus(section.id, "startDate-education")}
+         onChange={(e) => handleChange(section.id, "startDate", e.target.value)}
         />
-        <label htmlFor={`startYear-${index}`}>Start Year</label>
+        <label htmlFor={`startDate-education-${index}`}>Start Year</label>
        </div>
        <div className="input-wrapper">
         <input
          type="checkbox"
          id={`is-studying-${index}`}
+         checked={section.isStudying}
          onChange={(e) =>
           handleChange(section.id, "isStudying", e.target.checked)
          }
@@ -86,17 +102,33 @@ function Input({
         <label htmlFor={`is-studying-${index}`}>Currently in Study</label>
        </div>
        {section.isStudying === false ? (
-        <div className={`input-wrapper`}>
+        <div
+         className={`input-wrapper ${
+          focusedInputId === `endDate-education-${section.id}` ? "focus" : ""
+         }`}
+        >
          <input
           type="month"
-          id={`endYear-${index}`}
-          onChange={(e) => handleChange(section.id, "endYear", e.target.value)}
+          id={`endDate-education-${index}`}
+          value={section.endDate}
+          onFocus={() => handleFocus(section.id, "endDate-education")}
+          onChange={(e) => handleChange(section.id, "endDate", e.target.value)}
          />
-         <label htmlFor={`endYear-${index}`}>End Year</label>
+         <label htmlFor={`endDate-education-${index}`}>End Year</label>
         </div>
        ) : null}
+       <div className={`input-wrapper`}>
+        <input
+         type="text"
+         id={`gpa-${index}`}
+         value={section.gpa}
+         placeholder="4,00"
+         onChange={(e) => handleChange(section.id, "gpa", e.target.value)}
+        />
+        <label htmlFor={`gpa-${index}`}>GPA</label>
+       </div>
        <div className="input-action">
-        <button onClick={() => setAccordionOpenId(null)}>Cancel</button>
+        <button onClick={handleCloseAccordion}>Cancel</button>
         {educationInput.inputs.length > 1 && (
          <button onClick={() => handleRemoveEducation(section.id)}>
           <i className="fas fa-trash"></i>
@@ -120,26 +152,25 @@ function Education({
  setEducationInput,
  focusedInputId,
  setFocusedInputId,
- accordionOpenId,
- setAccordionOpenId,
 }) {
  const handleAddEducation = () => {
   setEducationInput((prevState) => {
    const newEdu = {
     id: prevState.idCounter + 1,
     schoolName: "",
-    study: "",
-    startYear: "",
-    endYear: "",
+    degree: "",
+    startDate: "",
+    endDate: "",
     isStudying: false,
+    gpa: "",
    };
    return {
     ...prevState,
     idCounter: prevState.idCounter + 1,
+    accordOpenId: prevState.idCounter + 1,
     inputs: [...prevState.inputs, newEdu],
    };
   });
-  setAccordionOpenId(educationInput.idCounter + 1);
  };
 
  const handleRemoveEducation = (sectionId) => {
@@ -159,8 +190,6 @@ function Education({
      focusedInputId={focusedInputId}
      setFocusedInputId={setFocusedInputId}
      handleRemoveEducation={handleRemoveEducation}
-     accordionOpenId={accordionOpenId}
-     setAccordionOpenId={setAccordionOpenId}
     />
     <button onClick={handleAddEducation}>
      <i className="fas fa-plus"></i>

@@ -20,6 +20,12 @@ const convertMonth = (inputValue) => {
  return `${monthNames[Number(month) - 1]} ${year}`;
 };
 
+const getYear = (inputValue) => {
+ const year = inputValue.split("-")[0];
+
+ return year;
+};
+
 function Graphics({ generalInfoInput }) {
  return (
   <div id="graphics">
@@ -130,12 +136,35 @@ function ATS({
     <hr />
     {educationInput.inputs.map((education) => (
      <div key={education.id} className="education-wrapper">
-      <div className="school-name">
-       {education.schoolName === "" ? "School Name" : education.schoolName}
+      <div className="school-information">
+       <div className="school-name">
+        {education.schoolName === "" ? "School Name" : education.schoolName}
+       </div>
+       <div className="date">
+        {" "}
+        {"("}
+        {education.startDate === ""
+         ? "Start Date"
+         : getYear(education.startDate)}{" "}
+        &minus;{" "}
+        {!education.isStudying
+         ? education.endDate === ""
+           ? "End Date"
+           : getYear(education.endDate)
+         : "Present"}
+        {")"}
+       </div>
       </div>
-      <div className="date"></div>
-      <div className="degree"></div>
-      <div className="gpa"></div>
+      <div className="school-detail">
+       <div className="degree">
+        {education.degree === "" ? "Degree" : education.degree}
+       </div>
+       &minus;
+       <div className="gpa">
+        {" "}
+        {education.gpa === "" ? "GPA" : `GPA ${education.gpa}`}
+       </div>
+      </div>
      </div>
     ))}
    </section>
@@ -144,18 +173,32 @@ function ATS({
     <hr />
     {projectInput.inputs.map((project) => (
      <div key={project.id} className="project-wrapper">
-      <div className="project-name">
-       {project.projectName === "" ? "Project Name" : project.projectName}
+      <div className="project-overview">
+       <div className="project-information">
+        <div className="project-name">
+         {project.projectName === "" ? "Project Name" : project.projectName}
+        </div>
+        {" | "}
+        <div className="project-stack">
+         {project.projectStack === "" ? "Project Stack" : project.projectStack}
+        </div>
+       </div>
+       <div className="date">
+        {project.startDate === ""
+         ? "Start Date"
+         : convertMonth(project.startDate)}{" "}
+        &minus;{" "}
+        {project.endDate === "" ? "End Date" : convertMonth(project.endDate)}
+       </div>
       </div>
-      <div className="project-stack">
-       {project.projectStack === "" ? "Project Stack" : project.projectStack}
-      </div>
-      <div className="date">
-       {project.startDate === ""
-        ? "Start Date"
-        : convertMonth(project.startDate)}{" "}
-       &minus;{" "}
-       {project.endDate === "" ? "End Date" : convertMonth(project.endDate)}
+      <div className="project-details">
+       <ul>
+        {project.details.map((detail, index) => (
+         <li key={detail.id}>
+          {detail.detail === "" ? `Detail ${index + 1}` : detail.detail}
+         </li>
+        ))}
+       </ul>
       </div>
      </div>
     ))}
