@@ -128,23 +128,23 @@ function Input({
        </div>
        <div
         className={`input-wrapper ${
-         focusedInputId === `startDate-${section.id}` ? "focus" : ""
+         focusedInputId === `startDate-experience-${section.id}` ? "focus" : ""
         }`}
        >
         <input
          type="month"
-         id={`startDate-${index}`}
+         id={`startDate-experience-${index}`}
          value={section.startDate}
-         onFocus={() => handleFocus(section.id, "startDate")}
+         onFocus={() => handleFocus(section.id, "startDate-experience")}
          onChange={(e) => handleChange(section.id, "startDate", e.target.value)}
         />
-        <label htmlFor={`startDate-${index}`}>Start Date</label>
+        <label htmlFor={`startDate-experience-${index}`}>Start Date</label>
        </div>
        <div className="input-wrapper">
         <input
          type="checkbox"
          id={`is-working-${index}`}
-         value={section.isWorking}
+         checked={section.isWorking}
          onChange={(e) =>
           handleChange(section.id, "isWorking", e.target.checked)
          }
@@ -154,17 +154,17 @@ function Input({
        {!section.isWorking && (
         <div
          className={`input-wrapper ${
-          focusedInputId === `endDate-${section.id}` ? "focus" : ""
+          focusedInputId === `endDate-experience-${section.id}` ? "focus" : ""
          }`}
         >
          <input
           type="month"
-          id={`endDate-${index}`}
+          id={`endDate-experience-${index}`}
           value={section.endDate}
-          onFocus={() => handleFocus(section.id, "endDate")}
+          onFocus={() => handleFocus(section.id, "endDate-experience")}
           onChange={(e) => handleChange(section.id, "endDate", e.target.value)}
          />
-         <label htmlFor={`endDate-${index}`}>Start Date</label>
+         <label htmlFor={`endDate-experience-${index}`}>End Date</label>
         </div>
        )}
        <div
@@ -216,11 +216,9 @@ function Input({
        </div>
        <div className="input-action">
         <button onClick={handleCloseAccordion}>Cancel</button>
-        {experienceInput.inputs.length > 1 && (
-         <button onClick={() => handleRemoveExperience(section.id)}>
-          <i className="fas fa-trash"></i>
-         </button>
-        )}
+        <button onClick={() => handleRemoveExperience(section.id)}>
+         <i className="fas fa-trash"></i>
+        </button>
        </div>
       </div>
      ) : (
@@ -286,7 +284,7 @@ function Experience({
      handleRemoveExperience={handleRemoveExperience}
     />
     <button onClick={handleAddExperience}>
-     <i className="fas fa-plus"></i>
+     <i className="fas fa-plus"></i> Add Experience
     </button>
    </div>
   </section>

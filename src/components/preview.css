@@ -1,0 +1,181 @@
+#preview {
+ grid-area: preview;
+ display: flex;
+ flex-direction: column;
+ align-content: inherit;
+ justify-content: start;
+ gap: 1rem;
+}
+
+#preview .page-button-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+
+#preview > div:last-child {
+ background: var(--light-color-200);
+ padding: 1rem;
+ height: 1123px;
+ box-shadow: 1px 1px 3px var(--light-color-600);
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ flex-direction: column;
+ gap: 1.5rem;
+}
+
+#preview > div:last-child > section {
+ width: 100%;
+}
+
+#preview .contact-information {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+}
+
+#preview h1 {
+ font-size: 20pt;
+}
+
+#preview h2 {
+ font-size: 14pt;
+}
+
+#preview #ats {
+ font-family: "Times New Roman", Times, serif;
+}
+
+#preview #ats *:not(h1, h2) {
+ font-size: 12pt;
+}
+
+#preview .contact-information > div {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 7px;
+}
+
+#preview .contact-information .link-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+#preview hr {
+ border: none;
+ height: 1px;
+ background: var(--dark-color-200);
+}
+
+#preview .skill .skill-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ gap: 7px;
+}
+
+#preview .skill .skill-wrapper .skill-name {
+ font-weight: bold;
+}
+
+#preview .experiences .experience-wrapper {
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ flex-direction: column;
+}
+
+#preview .experiences .experience-wrapper:not(.experience-wrapper:last-child) {
+ margin-bottom: 1rem;
+}
+
+#preview .experiences .experience-wrapper .experience-info {
+ width: 100%;
+ display: grid;
+ grid-template-columns: repeat(2, min-content);
+ justify-content: space-between;
+ white-space: nowrap;
+}
+
+#preview .experiences .experience-wrapper .experience-info .position {
+ font-weight: bold;
+}
+
+#preview .experiences .experience-wrapper .experience-info .location {
+ justify-self: end;
+ font-style: italic;
+}
+
+#preview .experiences .experience-wrapper .experience-info .company {
+ font-style: italic;
+}
+
+#preview .experiences .experience-wrapper .experience-details {
+ width: 100%;
+}
+
+#preview .experiences .experience-wrapper .experience-details ul,
+#preview .projects .project-wrapper .project-details ul {
+ list-style: disc;
+ margin-left: 2rem;
+}
+
+#preview .educations .education-wrapper {
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ flex-direction: column;
+}
+
+#preview .educations .education-wrapper:not(.education-wrapper:last-child) {
+ margin-bottom: 1rem;
+}
+
+#preview .educations .education-wrapper > div {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 7px;
+}
+
+#preview .educations .education-wrapper .school-information {
+ font-weight: bold;
+}
+
+#preview .projects .project-wrapper {
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ flex-direction: column;
+}
+
+#preview .projects .project-wrapper:not(.project-wrapper:last-child) {
+ margin-bottom: 1rem;
+}
+
+#preview .projects .project-wrapper .project-overview {
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ width: 100%;
+}
+
+#preview .projects .project-wrapper .project-overview .project-information {
+ flex: 1;
+ display: flex;
+ align-items: flex-start;
+ justify-content: start;
+ gap: 7px;
+}
+
+#preview .projects .project-wrapper .project-overview .project-name {
+ font-weight: bold;
+}
+
+#preview .projects .project-wrapper .project-overview .project-stack {
+ font-style: italic;
+}

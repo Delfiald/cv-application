@@ -137,7 +137,7 @@ function Skill({
      handleRemoveSkill={handleRemoveSkill}
     />
     <button onClick={handleAddSkill}>
-     <i className="fas fa-plus"></i>
+     <i className="fas fa-plus"></i> Add Skill
     </button>
    </div>
   </section>

@@ -251,28 +251,6 @@ aside button:hover {
  color: red;
 }
 
-#preview {
- grid-area: preview;
- display: flex;
- flex-direction: column;
- align-content: inherit;
- justify-content: start;
- gap: 1rem;
-}
-
-#preview .page-button-wrapper {
- display: flex;
- align-items: center;
- justify-content: space-between;
-}
-
-#preview > div:last-child {
- background: var(--light-color-200);
- padding: 1rem;
- height: 1123px;
- box-shadow: 1px 1px 3px var(--light-color-600);
-}
-
 footer {
  grid-area: footer;
 }

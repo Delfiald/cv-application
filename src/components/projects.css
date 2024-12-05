@@ -30,3 +30,47 @@
  box-shadow: 1px 1px 8px var(--light-color-600),
   -1px -1px 8px var(--light-color-600);
 }
+
+#projects .projects .project-section .accordion-wrapper .details-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+ gap: 1rem;
+}
+
+#projects .projects .project-section .accordion-wrapper .details-wrapper > div {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 1rem;
+ width: 100%;
+}
+
+#projects
+ .projects
+ .project-section
+ .accordion-wrapper
+ .details-wrapper
+ .input-wrapper {
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+#projects
+ .projects
+ .project-section
+ .accordion-wrapper
+ .details-wrapper
+ > div
+ > button {
+ color: red;
+ border-radius: 50%;
+ width: 40px;
+ height: 40px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}

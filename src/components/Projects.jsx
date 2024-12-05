@@ -16,6 +16,54 @@ function Input({
   }));
  };
 
+ const handleDetailChange = (id, detailId, value) => {
+  setProjectInput((prevState) => ({
+   ...prevState,
+   inputs: prevState.inputs.map((input) =>
+    input.id === id
+     ? {
+        ...input,
+        details: input.details.map((det) =>
+         det.id === detailId ? { ...det, detail: value } : det
+        ),
+       }
+     : input
+   ),
+  }));
+ };
+
+ const handleRemoveDetail = (id, detailId) => {
+  setProjectInput((prevState) => ({
+   ...prevState,
+   inputs: prevState.inputs.map((input) =>
+    input.id === id
+     ? { ...input, details: input.details.filter((det) => det.id !== detailId) }
+     : input
+   ),
+  }));
+ };
+
+ const handleAddDetail = (id) => {
+  setProjectInput((prevState) => ({
+   ...prevState,
+   inputs: prevState.inputs.map((input) =>
+    input.id === id
+     ? {
+        ...input,
+        detailsId: input.detailsId + 1,
+        details: [
+         ...input.details,
+         {
+          id: input.detailsId + 1,
+          detail: "",
+         },
+        ],
+       }
+     : input
+   ),
+  }));
+ };
+
  const handleFocus = (id) => {
   setFocusedInputId(id);
  };
@@ -106,13 +154,43 @@ function Input({
         />
         <label htmlFor={`project-end-${index}`}>End Date</label>
        </div>
+       <div className="details-wrapper">
+        {project.details.map((det, detailIndex) => (
+         <div key={det.id}>
+          <div
+           className={`input-wrapper ${
+            focusedInputId === `detail-${index}-${det.id}` ? "focus" : ""
+           } `}
+          >
+           <textarea
+            placeholder="Nothing"
+            id={`detail-${index}-${detailIndex}`}
+            value={det.detail}
+            onFocus={() => handleFocus(`detail-${index}-${det.id}`)}
+            onChange={(e) =>
+             handleDetailChange(project.id, det.id, e.target.value)
+            }
+           ></textarea>
+           <label htmlFor={`detail-${index}-${detailIndex}`}>
+            Detail {detailIndex + 1}
+           </label>
+          </div>
+          {project.details.length > 1 && (
+           <button onClick={() => handleRemoveDetail(project.id, det.id)}>
+            <i className="fas fa-minus"></i>
+           </button>
+          )}
+         </div>
+        ))}
+        <button onClick={() => handleAddDetail(project.id)}>
+         <i className="fas fa-plus"></i>
+        </button>
+       </div>
        <div className="input-action">
         <button onClick={handleCloseAccordion}>Cancel</button>
-        {projectInput.inputs.length > 1 && (
-         <button onClick={() => handleRemoveProject(project.id)}>
-          <i className="fas fa-trash"></i>
-         </button>
-        )}
+        <button onClick={() => handleRemoveProject(project.id)}>
+         <i className="fas fa-trash"></i>
+        </button>
        </div>
       </div>
      ) : (
@@ -143,6 +221,13 @@ function Projects({
      projectStack: "",
      startDate: "",
      endDate: "",
+     detailsId: 1,
+     details: [
+      {
+       id: 1,
+       detail: "",
+      },
+     ],
     },
    ],
    idCounter: prevState.idCounter + 1,
@@ -168,7 +253,7 @@ function Projects({
      handleRemoveProject={handleRemoveProject}
     />
     <button onClick={handleAddProject}>
-     <i className="fas fa-plus"></i>
+     <i className="fas fa-plus"></i> Add Projects
     </button>
    </div>
   </section>
