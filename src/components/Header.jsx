@@ -7,6 +7,11 @@ function Header({ setPreviewContent, previewContent }) {
 
  return (
   <>
+   <aside>
+    <button className="setting-button">
+     <i className="fas fa-sliders"></i>
+    </button>
+   </aside>
    <header>
     <nav>
      <div className="preview-button-wrapper">
@@ -14,7 +19,7 @@ function Header({ setPreviewContent, previewContent }) {
        className={`preview-button ${previewContent === "ats" ? "active" : ""}`}
        onClick={handlePreview}
       >
-       Change to ATS
+       ATS
       </button>
       <button
        className={`preview-button ${
@@ -22,16 +27,11 @@ function Header({ setPreviewContent, previewContent }) {
        }`}
        onClick={handlePreview}
       >
-       Change to Graphics
+       Graphics
       </button>
      </div>
     </nav>
    </header>
-   <aside>
-    <button className="setting-button">
-     <i className="fas fa-sliders"></i>
-    </button>
-   </aside>
   </>
  );
 }

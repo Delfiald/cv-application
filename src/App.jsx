@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import GeneralInfo from "./components/GeneralInfo";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
@@ -149,43 +148,47 @@ function App() {
 
  return (
   <>
-   <Header
-    setPreviewContent={setPreviewContent}
-    previewContent={previewContent}
-   />
-   <GeneralInfo
-    setGeneralInfoInput={setGeneralInfoInput}
-    additionalLinks={additionalLinks}
-    setAdditionalLinks={setAdditionalLinks}
-    focusedInputId={focusedInputId}
-    setFocusedInputId={setFocusedInputId}
-   />
-   <Education
-    educationInput={educationInput}
-    setEducationInput={setEducationInput}
-    focusedInputId={focusedInputId}
-    setFocusedInputId={setFocusedInputId}
-    accordionOpenId={accordionOpenId}
-    setAccordionOpenId={setAccordionOpenId}
-   />
-   <Experience
-    experienceInput={experienceInput}
-    setExperienceInput={setExperienceInput}
-    focusedInputId={focusedInputId}
-    setFocusedInputId={setFocusedInputId}
-   />
-   <Skill
-    skillInput={skillInput}
-    setSkillInput={setSkillInput}
-    focusedInputId={focusedInputId}
-    setFocusedInputId={setFocusedInputId}
-   />
-   <Projects
-    projectInput={projectInput}
-    setProjectInput={setProjectInput}
-    focusedInputId={focusedInputId}
-    setFocusedInputId={setFocusedInputId}
-   />
+   <section className="edit-section">
+    <Header
+     setPreviewContent={setPreviewContent}
+     previewContent={previewContent}
+    />
+    <div className="input-section">
+     <GeneralInfo
+      setGeneralInfoInput={setGeneralInfoInput}
+      additionalLinks={additionalLinks}
+      setAdditionalLinks={setAdditionalLinks}
+      focusedInputId={focusedInputId}
+      setFocusedInputId={setFocusedInputId}
+     />
+     <Education
+      educationInput={educationInput}
+      setEducationInput={setEducationInput}
+      focusedInputId={focusedInputId}
+      setFocusedInputId={setFocusedInputId}
+      accordionOpenId={accordionOpenId}
+      setAccordionOpenId={setAccordionOpenId}
+     />
+     <Experience
+      experienceInput={experienceInput}
+      setExperienceInput={setExperienceInput}
+      focusedInputId={focusedInputId}
+      setFocusedInputId={setFocusedInputId}
+     />
+     <Skill
+      skillInput={skillInput}
+      setSkillInput={setSkillInput}
+      focusedInputId={focusedInputId}
+      setFocusedInputId={setFocusedInputId}
+     />
+     <Projects
+      projectInput={projectInput}
+      setProjectInput={setProjectInput}
+      focusedInputId={focusedInputId}
+      setFocusedInputId={setFocusedInputId}
+     />
+    </div>
+   </section>
    <Preview
     generalInfoInput={generalInfoInput}
     previewContent={previewContent}
@@ -195,7 +198,6 @@ function App() {
     skillInput={skillInput}
     projectInput={projectInput}
    />
-   <Footer />
   </>
  );
 }
