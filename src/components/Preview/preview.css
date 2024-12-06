@@ -59,6 +59,7 @@
 #preview > div:last-child .paper {
  justify-self: center;
  padding: 1rem;
+ min-width: 794px;
  max-width: 794px;
  width: 100%;
  background: var(--light-color-200);

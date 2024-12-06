@@ -49,13 +49,14 @@ function ATS({
  experienceInput,
  skillInput,
  projectInput,
+ fontFamily,
 }) {
  const firstName = generalInfoInput.firstName;
  const lastName = generalInfoInput.lastName;
  const email = generalInfoInput.email;
  const phone = generalInfoInput.phone;
  return (
-  <div id="ats">
+  <div id="ats" style={{ fontFamily: fontFamily.fontName }}>
    <div className="paper">
     <section className="contact-information">
      <h1>
@@ -224,6 +225,7 @@ function Preview({
  experienceInput,
  skillInput,
  projectInput,
+ fontFamily,
 }) {
  return (
   <section id="preview">
@@ -242,6 +244,7 @@ function Preview({
      experienceInput={experienceInput}
      skillInput={skillInput}
      projectInput={projectInput}
+     fontFamily={fontFamily}
     />
    ) : (
     <Graphics generalInfoInput={generalInfoInput} />

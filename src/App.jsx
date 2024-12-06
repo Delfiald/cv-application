@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
-import GeneralInfo from "./components/GeneralInfo";
-import Education from "./components/Education";
-import Experience from "./components/Experience";
-import Skill from "./components/Skill";
-import Projects from "./components/Projects";
-import Preview from "./components/Preview";
+import GeneralInfo from "./components/GeneralInformation/GeneralInfo";
+import Education from "./components/Education/Education";
+import Experience from "./components/Experience/Experience";
+import Skill from "./components/Skills/Skill";
+import Projects from "./components/Projects/Projects";
+import Preview from "./components/Preview/Preview";
+import Options from "./components/Options";
 
 function App() {
  const [previewContent, setPreviewContent] = useState("ats");
@@ -130,7 +131,6 @@ function App() {
   ],
  });
 
- const [accordionOpenId, setAccordionOpenId] = useState(1);
  const [focusedInputId, setFocusedInputId] = useState(null);
 
  const handleClickOutside = (e) => {
@@ -146,47 +146,60 @@ function App() {
   };
  }, []);
 
+ const [menuOpen, setMenuOpen] = useState(false);
+
+ const [fontFamily, setFontFamily] = useState({
+  fontName: `"Times New Roman", Times, serif`,
+  fontActive: "times-new-roman",
+ });
+
  return (
   <>
    <section className="edit-section">
     <Header
      setPreviewContent={setPreviewContent}
      previewContent={previewContent}
+     menuOpen={menuOpen}
+     setMenuOpen={setMenuOpen}
     />
     <div className="input-section">
-     <GeneralInfo
-      setGeneralInfoInput={setGeneralInfoInput}
-      additionalLinks={additionalLinks}
-      setAdditionalLinks={setAdditionalLinks}
-      focusedInputId={focusedInputId}
-      setFocusedInputId={setFocusedInputId}
-     />
-     <Education
-      educationInput={educationInput}
-      setEducationInput={setEducationInput}
-      focusedInputId={focusedInputId}
-      setFocusedInputId={setFocusedInputId}
-      accordionOpenId={accordionOpenId}
-      setAccordionOpenId={setAccordionOpenId}
-     />
-     <Experience
-      experienceInput={experienceInput}
-      setExperienceInput={setExperienceInput}
-      focusedInputId={focusedInputId}
-      setFocusedInputId={setFocusedInputId}
-     />
-     <Skill
-      skillInput={skillInput}
-      setSkillInput={setSkillInput}
-      focusedInputId={focusedInputId}
-      setFocusedInputId={setFocusedInputId}
-     />
-     <Projects
-      projectInput={projectInput}
-      setProjectInput={setProjectInput}
-      focusedInputId={focusedInputId}
-      setFocusedInputId={setFocusedInputId}
-     />
+     {!menuOpen ? (
+      <>
+       <GeneralInfo
+        setGeneralInfoInput={setGeneralInfoInput}
+        additionalLinks={additionalLinks}
+        setAdditionalLinks={setAdditionalLinks}
+        focusedInputId={focusedInputId}
+        setFocusedInputId={setFocusedInputId}
+       />
+       <Education
+        educationInput={educationInput}
+        setEducationInput={setEducationInput}
+        focusedInputId={focusedInputId}
+        setFocusedInputId={setFocusedInputId}
+       />
+       <Experience
+        experienceInput={experienceInput}
+        setExperienceInput={setExperienceInput}
+        focusedInputId={focusedInputId}
+        setFocusedInputId={setFocusedInputId}
+       />
+       <Skill
+        skillInput={skillInput}
+        setSkillInput={setSkillInput}
+        focusedInputId={focusedInputId}
+        setFocusedInputId={setFocusedInputId}
+       />
+       <Projects
+        projectInput={projectInput}
+        setProjectInput={setProjectInput}
+        focusedInputId={focusedInputId}
+        setFocusedInputId={setFocusedInputId}
+       />
+      </>
+     ) : (
+      <Options fontFamily={fontFamily} setFontFamily={setFontFamily} />
+     )}
     </div>
    </section>
    <Preview
@@ -197,6 +210,7 @@ function App() {
     experienceInput={experienceInput}
     skillInput={skillInput}
     projectInput={projectInput}
+    fontFamily={fontFamily}
    />
   </>
  );

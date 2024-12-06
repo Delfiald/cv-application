@@ -189,13 +189,6 @@ header nav .preview-button-wrapper > button.active {
  pointer-events: none;
 }
 
-aside {
- display: flex;
- align-items: start;
- justify-content: center;
- grid-area: aside;
-}
-
 aside button:hover {
  background: var(--dark-color-200);
  color: var(--light-color-200);
@@ -216,7 +209,15 @@ aside button:hover {
 #root .edit-section aside {
  grid-column: 1 / 2;
  grid-row: 1 / 2;
- align-self: center;
+ align-self: start;
+ display: flex;
+ align-items: start;
+ justify-content: center;
+}
+
+#root .edit-section aside > button.open {
+ background: var(--dark-color-200);
+ color: var(--light-color-200);
 }
 
 #root .edit-section .input-section {
