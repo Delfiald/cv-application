@@ -153,6 +153,25 @@ function App() {
   fontActive: "times-new-roman",
  });
 
+ const [sectionOrder, setSectionOrder] = useState([
+  {
+   id: 1,
+   sectionName: "Skills",
+  },
+  {
+   id: 2,
+   sectionName: "Experiences",
+  },
+  {
+   id: 3,
+   sectionName: "Educations",
+  },
+  {
+   id: 4,
+   sectionName: "Projects",
+  },
+ ]);
+
  return (
   <>
    <section className="edit-section">
@@ -198,19 +217,26 @@ function App() {
        />
       </>
      ) : (
-      <Options fontFamily={fontFamily} setFontFamily={setFontFamily} />
+      <Options
+       previewContent={previewContent}
+       fontFamily={fontFamily}
+       setFontFamily={setFontFamily}
+       sectionOrder={sectionOrder}
+       setSectionOrder={setSectionOrder}
+      />
      )}
     </div>
    </section>
    <Preview
-    generalInfoInput={generalInfoInput}
     previewContent={previewContent}
+    generalInfoInput={generalInfoInput}
     additionalLinks={additionalLinks}
     educationInput={educationInput}
     experienceInput={experienceInput}
     skillInput={skillInput}
     projectInput={projectInput}
     fontFamily={fontFamily}
+    sectionOrder={sectionOrder}
    />
   </>
  );
