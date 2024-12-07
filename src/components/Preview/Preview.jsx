@@ -42,53 +42,56 @@ function Graphics({ generalInfoInput }) {
  );
 }
 
-function ATS({
- generalInfoInput,
- additionalLinks,
- educationInput,
- experienceInput,
- skillInput,
- projectInput,
-}) {
+function ATSContactInformation({ generalInfoInput, additionalLinks }) {
  const firstName = generalInfoInput.firstName;
  const lastName = generalInfoInput.lastName;
  const email = generalInfoInput.email;
  const phone = generalInfoInput.phone;
  return (
-  <div id="ats">
-   <section className="contact-information">
-    <h1>
-     {firstName === "" ? "Name" : firstName} {lastName === "" ? "" : lastName}
-    </h1>
-    <div>
-     <a href={`mailto:${email}`}>{email === "" ? "Email" : email}</a>
-     {" | "}
-     <p>{phone === "" ? "Phone" : phone}</p>
-     {additionalLinks.links.map((link, index) => (
-      <React.Fragment key={link.id}>
-       {index === 0 && " | "}
-       <a href={link.value} target="_blank" rel="noopener noreferrer">
-        {link.value === "" ? `Link ${index + 1}` : link.value}
-       </a>
-       {index !== additionalLinks.links.length - 1 && " | "}
-      </React.Fragment>
-     ))}
-    </div>
-   </section>
-   <section className="skill">
-    <h2>Skills</h2>
-    <hr />
-    {skillInput.inputs.map((skill) => (
-     <div key={skill.id} className="skill-wrapper">
-      <div className="skill-name">
-       {skill.skillName === "" ? "Skill Name" : skill.skillName}:
-      </div>
-      <div className="skill-details">
-       {skill.skillDetails === "" ? "Skill Details" : skill.skillDetails}
-      </div>
-     </div>
+  <section className="contact-information">
+   <h1>
+    {firstName === "" ? "Name" : firstName} {lastName === "" ? "" : lastName}
+   </h1>
+   <div>
+    <a href={`mailto:${email}`}>{email === "" ? "Email" : email}</a>
+    {" | "}
+    <p>{phone === "" ? "Phone" : phone}</p>
+    {additionalLinks.links.map((link, index) => (
+     <React.Fragment key={link.id}>
+      {index === 0 && " | "}
+      <a href={link.value} target="_blank" rel="noopener noreferrer">
+       {link.value === "" ? `Link ${index + 1}` : link.value}
+      </a>
+      {index !== additionalLinks.links.length - 1 && " | "}
+     </React.Fragment>
     ))}
-   </section>
+   </div>
+  </section>
+ );
+}
+
+function ATSSkills({ skillInput }) {
+ return (
+  <section className="skill">
+   <h2>Skills</h2>
+   <hr />
+   {skillInput.inputs.map((skill) => (
+    <div key={skill.id} className="skill-wrapper">
+     <div className="skill-name">
+      {skill.skillName === "" ? "Skill Name" : skill.skillName}:
+     </div>
+     <div className="skill-details">
+      {skill.skillDetails === "" ? "Skill Details" : skill.skillDetails}
+     </div>
+    </div>
+   ))}
+  </section>
+ );
+}
+
+function ATSExperiences({ experienceInput }) {
+ return (
+  <>
    {experienceInput.inputs.length > 0 && (
     <section className="experiences">
      <h2>Experiences</h2>
@@ -132,6 +135,13 @@ function ATS({
      ))}
     </section>
    )}
+  </>
+ );
+}
+
+function ATSEducations({ educationInput }) {
+ return (
+  <>
    {educationInput.inputs.length > 0 && (
     <section className="educations">
      <h2>Educations</h2>
@@ -171,6 +181,13 @@ function ATS({
      ))}
     </section>
    )}
+  </>
+ );
+}
+
+function ATSProjects({ projectInput }) {
+ return (
+  <>
    {projectInput.inputs.length > 0 && (
     <section className="projects">
      <h2>Projects</h2>
@@ -208,30 +225,72 @@ function ATS({
      ))}
     </section>
    )}
-  </div>
+  </>
  );
 }
 
-function Preview({
+function ATS({
  generalInfoInput,
- previewContent,
  additionalLinks,
  educationInput,
  experienceInput,
  skillInput,
  projectInput,
+ fontFamily,
+ sectionOrder,
+}) {
+ const renderSection = (sectionName) => {
+  switch (sectionName) {
+   case "Skills":
+    return <ATSSkills skillInput={skillInput} />;
+   case "Experiences":
+    return <ATSExperiences experienceInput={experienceInput} />;
+   case "Educations":
+    return <ATSEducations educationInput={educationInput} />;
+   case "Projects":
+    return <ATSProjects projectInput={projectInput} />;
+   default:
+    return null;
+  }
+ };
+
+ return (
+  <div id="ats" style={{ fontFamily: fontFamily.fontName }}>
+   <div className="paper">
+    <ATSContactInformation
+     generalInfoInput={generalInfoInput}
+     additionalLinks={additionalLinks}
+    />
+    {sectionOrder.map((sectionName) => (
+     <React.Fragment key={sectionName.id}>
+      {renderSection(sectionName.sectionName)}
+     </React.Fragment>
+    ))}
+   </div>
+  </div>
+ );
+}
+
+function Preview({
+ previewContent,
+ generalInfoInput,
+ additionalLinks,
+ educationInput,
+ experienceInput,
+ skillInput,
+ projectInput,
+ fontFamily,
+ sectionOrder,
 }) {
  return (
   <section id="preview">
-   <div className="page-button-wrapper">
-    <button>
-     <i className="fas fa-chevron-left"></i>
-    </button>
-    <p>Page 1 of 2</p>
-    <button>
-     <i className="fas fa-chevron-right"></i>
-    </button>
-   </div>
+   <button className="nav-button previous">
+    <i className="fas fa-chevron-left"></i>
+   </button>
+   <button className="nav-button next">
+    <i className="fas fa-chevron-right"></i>
+   </button>
+   <div className="page-number">1 of 2</div>
    {previewContent === "ats" ? (
     <ATS
      generalInfoInput={generalInfoInput}
@@ -240,6 +299,8 @@ function Preview({
      experienceInput={experienceInput}
      skillInput={skillInput}
      projectInput={projectInput}
+     fontFamily={fontFamily}
+     sectionOrder={sectionOrder}
     />
    ) : (
     <Graphics generalInfoInput={generalInfoInput} />

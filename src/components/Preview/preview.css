@@ -1,39 +1,38 @@
 #preview {
- grid-area: preview;
+ position: relative;
  display: flex;
  flex-direction: column;
- align-content: inherit;
  justify-content: start;
  gap: 1rem;
+ align-self: start;
+ max-height: calc(100vh - 2rem);
+ flex: 1 1 auto;
 }
 
-#preview .page-button-wrapper {
+#preview .nav-button {
+ position: absolute;
  display: flex;
  align-items: center;
  justify-content: space-between;
+ top: 50%;
+ transform: translate(0, -50%);
+ background: transparent;
+ border: none;
+ font-size: 2rem;
+ opacity: 0.15;
+ transition: 0.25s all ease;
 }
 
-#preview > div:last-child {
- background: var(--light-color-200);
- padding: 1rem;
- height: 1123px;
- box-shadow: 1px 1px 3px var(--light-color-600);
- display: flex;
- align-items: center;
- justify-content: start;
- flex-direction: column;
- gap: 1.5rem;
+#preview .nav-button:hover {
+ opacity: 0.5;
 }
 
-#preview > div:last-child > section {
- width: 100%;
+#preview .nav-button.next {
+ right: 0;
 }
 
-#preview .contact-information {
- display: flex;
- align-items: center;
- justify-content: center;
- flex-direction: column;
+#preview .page-number {
+ align-self: flex-end;
 }
 
 #preview h1 {
@@ -46,6 +45,43 @@
 
 #preview #ats {
  font-family: "Times New Roman", Times, serif;
+ padding: 1rem 0;
+}
+
+#preview > #ats,
+#preview > #graphics {
+ max-height: 1123px;
+ height: 100%;
+ overflow-y: auto;
+ overflow-x: hidden;
+}
+
+#preview > div:last-child .paper {
+ justify-self: center;
+ padding: 1rem;
+ min-width: 794px;
+ max-width: 794px;
+ width: 100%;
+ background: var(--light-color-200);
+ min-height: 1123px;
+ height: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ flex-direction: column;
+ gap: 1.5rem;
+ box-shadow: 1px 1px 3px var(--light-color-600);
+}
+
+#preview > div:last-child .paper > section {
+ width: 100%;
+}
+
+#preview .contact-information {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
 }
 
 #preview #ats *:not(h1, h2) {
@@ -56,7 +92,8 @@
  display: flex;
  align-items: center;
  justify-content: center;
- gap: 7px;
+ gap: 4px;
+ flex-wrap: wrap;
 }
 
 #preview .contact-information .link-wrapper {
@@ -178,4 +215,18 @@
 
 #preview .projects .project-wrapper .project-overview .project-stack {
  font-style: italic;
+}
+
+@media print {
+ .edit-section {
+  display: none;
+ }
+
+ .nav-button {
+  display: none;
+ }
+
+ .page-number {
+  display: none;
+ }
 }

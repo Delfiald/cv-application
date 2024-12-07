@@ -1,6 +1,14 @@
 import "./generalInfo.css";
 
-function Input({ setGeneralInfoInput, focusedInputId, setFocusedInputId }) {
+function Input({
+ generalInfoInput,
+ setGeneralInfoInput,
+ focusedInputId,
+ setFocusedInputId,
+ additionalInfo,
+ setAdditionalInfo,
+ previewContent,
+}) {
  const inputList = [
   {
    key: 0,
@@ -43,8 +51,80 @@ function Input({ setGeneralInfoInput, focusedInputId, setFocusedInputId }) {
   setFocusedInputId(id);
  };
 
+ const handleImage = (inputFile, callback) => {
+  if (inputFile && inputFile.type.startsWith("image/")) {
+   const reader = new FileReader();
+   reader.onload = function (e) {
+    callback(e.target.result);
+   };
+   reader.readAsDataURL(inputFile);
+  } else {
+   console.error("Please upload a valid image file.");
+  }
+ };
+
+ const handleAddInfoChange = (id, value) => {
+  setAdditionalInfo((prevState) => ({
+   ...prevState,
+   [id]: value,
+  }));
+ };
+
+ const handleFileChange = (file) => {
+  handleImage(file, (imageData) => {
+   handleAddInfoChange("picture", imageData);
+  });
+ };
+
  return (
   <>
+   {previewContent === "graphics" && (
+    <div className="additional-information">
+     <div className="input-wrapper">
+      <input
+       type="file"
+       id="profile-picture"
+       accept="image/*"
+       onChange={(e) => handleFileChange(e.target.files[0])}
+      />
+      <label htmlFor="profile-picture">
+       {additionalInfo.picture === "" ? (
+        <i className="fas fa-user"></i>
+       ) : (
+        <img src={additionalInfo.picture} />
+       )}
+       <div>Upload File</div>
+      </label>
+     </div>
+     <div
+      className={`input-wrapper ${
+       focusedInputId === "profile-subject" ? "focus" : ""
+      }`}
+     >
+      <input
+       type="text"
+       id="profile-subject"
+       placeholder="Front-end Developer"
+       value={additionalInfo.subject}
+       onFocus={() => handleFocus("profile-subject")}
+       onChange={(e) => handleAddInfoChange("subject", e.target.value)}
+      />
+      <label htmlFor="profile-subject">Subject</label>
+     </div>
+     <div
+      className={`input-wrapper ${focusedInputId === "summary" ? "focus" : ""}`}
+     >
+      <textarea
+       id="summary"
+       placeholder="Chill Front-end Developer Guy that love Critical Thinking, just keep chilling"
+       value={additionalInfo.summary}
+       onFocus={() => handleFocus("summary")}
+       onChange={(e) => handleAddInfoChange("summary", e.target.value)}
+      ></textarea>
+      <label htmlFor="summary">Summary</label>
+     </div>
+    </div>
+   )}
    {inputList.map((inputItem) => (
     <div
      key={inputItem.key}
@@ -56,6 +136,7 @@ function Input({ setGeneralInfoInput, focusedInputId, setFocusedInputId }) {
       type={inputItem.type}
       id={inputItem.id}
       placeholder={inputItem.placeholder}
+      value={generalInfoInput[inputItem.id]}
       onChange={(e) => handleChange(inputItem.id, e.target.value)}
       onFocus={() => handleFocus(inputItem.id)}
      />
@@ -87,6 +168,7 @@ function AdditionalLink({
       <input
        type="text"
        placeholder={`Link ${index + 1}`}
+       value={link.value}
        onChange={(e) => handleChange(e.target.value, link.id)}
        onFocus={() => handleFocus(link.id)}
       ></input>
@@ -101,11 +183,15 @@ function AdditionalLink({
 }
 
 function GeneralInfo({
+ generalInfoInput,
  setGeneralInfoInput,
  additionalLinks,
  setAdditionalLinks,
  focusedInputId,
  setFocusedInputId,
+ additionalInfo,
+ setAdditionalInfo,
+ previewContent,
 }) {
  const handleAddLink = () => {
   setAdditionalLinks((prevState) => {
@@ -138,9 +224,13 @@ function GeneralInfo({
    <h2>General Information</h2>
    <div className="basic-information">
     <Input
+     generalInfoInput={generalInfoInput}
      setGeneralInfoInput={setGeneralInfoInput}
      focusedInputId={focusedInputId}
      setFocusedInputId={setFocusedInputId}
+     additionalInfo={additionalInfo}
+     setAdditionalInfo={setAdditionalInfo}
+     previewContent={previewContent}
     />
    </div>
    <div className="additional-link">
