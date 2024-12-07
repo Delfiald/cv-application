@@ -102,12 +102,92 @@ function Order({ sectionOrder, setSectionOrder }) {
  );
 }
 
+function Layout({ setSectionLayout }) {
+ const handleSectionLayout = (layoutName) => {
+  setSectionLayout(layoutName);
+ };
+ return (
+  <div className="layout">
+   <h2>Layout</h2>
+   <div className="layout-list-wrapper">
+    <button
+     onClick={() => handleSectionLayout("layout-left")}
+     className="layout"
+    >
+     <div className="layout-pict"></div>
+     <div className="layout-name">Left</div>
+    </button>
+    <button
+     onClick={() => handleSectionLayout("layout-top")}
+     className="layout"
+    >
+     <div className="layout-pict"></div>
+     <div className="layout-name">Top</div>
+    </button>
+    <button
+     onClick={() => handleSectionLayout("layout-right")}
+     className="layout"
+    >
+     <div className="layout-pict"></div>
+     <div className="layout-name">Right</div>
+    </button>
+   </div>
+  </div>
+ );
+}
+
+function Colors({ colors, setColors }) {
+ const handleColorChange = (value, field) => {
+  setColors((prevState) => ({
+   ...prevState,
+   [field]: value,
+  }));
+ };
+ return (
+  <div className="colors">
+   <h2>Colors</h2>
+   <div className="colors-wrapper">
+    <div className="color-input-wrapper">
+     <input
+      type="color"
+      id="font-color"
+      value={colors.fontColor}
+      onChange={(e) => handleColorChange(e.target.value, "fontColor")}
+     />
+     <label htmlFor="font-color">Font</label>
+    </div>
+    <div className="color-input-wrapper">
+     <input
+      type="color"
+      id="primary-color"
+      value={colors.primaryColor}
+      onChange={(e) => handleColorChange(e.target.value, "primaryColor")}
+     />
+     <label htmlFor="primary-color">Primary</label>
+    </div>
+    <div className="color-input-wrapper">
+     <input
+      type="color"
+      id="secondary-color"
+      value={colors.secondaryColor}
+      onChange={(e) => handleColorChange(e.target.value, "secondaryColor")}
+     />
+     <label htmlFor="secondary-color">Secondary</label>
+    </div>
+   </div>
+  </div>
+ );
+}
+
 function Options({
  fontFamily,
  setFontFamily,
  setSectionOrder,
  sectionOrder,
  previewContent,
+ setSectionLayout,
+ colors,
+ setColors,
 }) {
  return (
   <section id="options">
@@ -117,7 +197,13 @@ function Options({
      <Fonts fontFamily={fontFamily} setFontFamily={setFontFamily} />
      <Order sectionOrder={sectionOrder} setSectionOrder={setSectionOrder} />
     </>
-   ) : null}
+   ) : (
+    <>
+     <Fonts fontFamily={fontFamily} setFontFamily={setFontFamily} />
+     <Layout setSectionLayout={setSectionLayout} />
+     <Colors colors={colors} setColors={setColors} />
+    </>
+   )}
   </section>
  );
 }

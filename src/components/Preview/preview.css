@@ -92,7 +92,8 @@
  display: flex;
  align-items: center;
  justify-content: center;
- gap: 7px;
+ gap: 4px;
+ flex-wrap: wrap;
 }
 
 #preview .contact-information .link-wrapper {
@@ -214,4 +215,18 @@
 
 #preview .projects .project-wrapper .project-overview .project-stack {
  font-style: italic;
+}
+
+@media print {
+ .edit-section {
+  display: none;
+ }
+
+ .nav-button {
+  display: none;
+ }
+
+ .page-number {
+  display: none;
+ }
 }

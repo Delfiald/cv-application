@@ -30,6 +30,10 @@
  border-radius: 5px;
 }
 
+a:visited {
+ color: #0000ee;
+}
+
 .input-wrapper {
  position: relative;
 }
@@ -152,7 +156,7 @@ body {
 
 header {
  display: flex;
- align-items: center;
+ align-items: start;
  justify-content: center;
  gap: 1rem;
 }
@@ -207,17 +211,58 @@ aside button:hover {
 }
 
 #root .edit-section aside {
+ position: relative;
  grid-column: 1 / 2;
  grid-row: 1 / 2;
  align-self: start;
  display: flex;
+ flex-direction: column;
  align-items: start;
  justify-content: center;
+ gap: 1rem;
 }
 
 #root .edit-section aside > button.open {
  background: var(--dark-color-200);
  color: var(--light-color-200);
+}
+
+#root .edit-section aside .menu-wrapper {
+ position: absolute;
+ left: 100%;
+ top: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 0.5rem;
+ z-index: 1;
+ padding: 0.5rem;
+ border-radius: 10px;
+ transition: 0.35s all ease;
+ opacity: 0;
+ visibility: hidden;
+ white-space: nowrap;
+ transform: scaleX(0);
+ transform-origin: left;
+}
+
+#root .edit-section aside button.open ~ .menu-wrapper {
+ opacity: 1;
+ visibility: visible;
+ transform: scaleX(1);
+}
+
+#root .edit-section aside .menu-wrapper > div {
+ width: 100%;
+}
+
+#root .edit-section aside .menu-wrapper button {
+ width: 100%;
+ display: grid;
+ grid-template-columns: auto 1fr;
+ align-items: center;
+ justify-content: start;
+ gap: 0.5rem;
 }
 
 #root .edit-section .input-section {
@@ -292,4 +337,34 @@ aside button:hover {
 
 footer {
  grid-area: footer;
+}
+
+@media print {
+ #root {
+  padding: 0;
+ }
+
+ hr {
+  display: block !important;
+  height: 1px !important;
+  background: transparent !important;
+  border-top: solid 1px var(--dark-color-200) !important;
+ }
+
+ .edit-section {
+  display: none !important;
+ }
+
+ .nav-button {
+  display: none !important;
+ }
+
+ .page-number {
+  display: none !important;
+ }
+
+ #preview > div:last-child .paper {
+  box-shadow: none;
+  padding: 0;
+ }
 }

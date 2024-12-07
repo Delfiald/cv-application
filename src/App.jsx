@@ -18,6 +18,12 @@ function App() {
   phone: "",
  });
 
+ const [additionalInfo, setAdditionalInfo] = useState({
+  picture: "",
+  subject: "",
+  summary: "",
+ });
+
  const [additionalLinks, setAdditionalLinks] = useState({
   idCounter: 1,
   links: [],
@@ -147,6 +153,7 @@ function App() {
  }, []);
 
  const [menuOpen, setMenuOpen] = useState(false);
+ const [settingsOpen, setSettingsOpen] = useState(false);
 
  const [fontFamily, setFontFamily] = useState({
   fontName: `"Times New Roman", Times, serif`,
@@ -172,6 +179,232 @@ function App() {
   },
  ]);
 
+ const [sectionLayout, setSectionLayout] = useState("layout-left");
+ const [colors, setColors] = useState({
+  fontColor: "#000000",
+  primaryColor: "#000000",
+  secondaryColor: "#000000",
+ });
+
+ const setExample = () => {
+  setGeneralInfoInput((prevState) => ({
+   ...prevState,
+   firstName: "John",
+   lastName: "Doe",
+   email: "john@doe.com",
+   phone: "+1-212-456-7890",
+  }));
+
+  setAdditionalLinks((prevState) => ({
+   ...prevState,
+   idCounter: 3,
+   links: [
+    {
+     id: 1,
+     value: "https://www.github.com/JohnDoe",
+    },
+    {
+     id: 2,
+     value: "https://www.linkedin.com/dd/JohnDoe",
+    },
+   ],
+  }));
+
+  setEducationInput({
+   idCounter: 3,
+   accordOpenId: 2,
+   inputs: [
+    {
+     id: 1,
+     schoolName: "Harvard University",
+     degree: "Bachelor of Computer Science",
+     startDate: "2015-09",
+     endDate: "2019-06",
+     isStudying: false,
+     gpa: "3.8",
+    },
+    {
+     id: 2,
+     schoolName: "MIT",
+     degree: "Master of Artificial Intelligence",
+     startDate: "2020-09",
+     endDate: "2022-06",
+     isStudying: false,
+     gpa: "4.0",
+    },
+   ],
+  });
+
+  setExperienceInput({
+   idCounter: 3,
+   accordOpenId: 2,
+   inputs: [
+    {
+     id: 1,
+     company: "Google",
+     position: "Software Engineer",
+     startDate: "2019-07",
+     endDate: "2021-12",
+     location: "Mountain View, CA",
+     isWorking: false,
+     descId: 2,
+     descriptions: [
+      { id: 1, description: "Developed scalable web applications." },
+      { id: 2, description: "Optimized performance by 30%." },
+     ],
+    },
+    {
+     id: 2,
+     company: "Facebook",
+     position: "Senior Software Engineer",
+     startDate: "2022-01",
+     endDate: "",
+     location: "Menlo Park, CA",
+     isWorking: true,
+     descId: 2,
+     descriptions: [
+      { id: 1, description: "Led a team of 10 developers." },
+      { id: 2, description: "Implemented new features for user engagement." },
+     ],
+    },
+   ],
+  });
+
+  setSkillInput({
+   idCounter: 4,
+   accordOpenId: 3,
+   inputs: [
+    {
+     id: 1,
+     skillName: "JavaScript",
+     skillDetails: "Expert in ES6+ and React.js",
+    },
+    {
+     id: 2,
+     skillName: "Python",
+     skillDetails: "Proficient in data analysis and machine learning.",
+    },
+    {
+     id: 3,
+     skillName: "C++",
+     skillDetails: "Experience with competitive programming and algorithms.",
+    },
+   ],
+  });
+
+  setProjectInput({
+   idCounter: 3,
+   accordOpenId: 2,
+   inputs: [
+    {
+     id: 1,
+     projectName: "E-commerce Website",
+     projectStack: "React, Node.js, MongoDB",
+     startDate: "2021-03",
+     endDate: "2021-08",
+     detailsId: 2,
+     details: [
+      { id: 1, detail: "Built a responsive front-end using React." },
+      { id: 2, detail: "Integrated Stripe API for payment processing." },
+     ],
+    },
+    {
+     id: 2,
+     projectName: "Social Media App",
+     projectStack: "Flutter, Firebase",
+     startDate: "2022-05",
+     endDate: "2022-11",
+     detailsId: 1,
+     details: [{ id: 1, detail: "Developed real-time chat functionality." }],
+    },
+   ],
+  });
+ };
+
+ const clearInput = () => {
+  setGeneralInfoInput({
+   firstName: "",
+   lastName: "",
+   email: "",
+   phone: "",
+  });
+
+  setAdditionalLinks({
+   idCounter: 1,
+   links: [],
+  });
+
+  setEducationInput({
+   idCounter: 1,
+   accordOpenId: 1,
+   inputs: [
+    {
+     id: 1,
+     schoolName: "",
+     degree: "",
+     startDate: "",
+     endDate: "",
+     isStudying: false,
+     gpa: "",
+    },
+   ],
+  });
+
+  setExperienceInput({
+   idCounter: 1,
+   accordOpenId: 1,
+   inputs: [
+    {
+     id: 1,
+     company: "",
+     position: "",
+     startDate: "",
+     endDate: "",
+     location: "",
+     descriptions: [
+      { id: 1, description: "" },
+      { id: 2, description: "" },
+     ],
+     isWorking: false,
+     descId: 2,
+    },
+   ],
+  });
+
+  setSkillInput({
+   idCounter: 1,
+   accordOpenId: 1,
+   inputs: [
+    {
+     id: 1,
+     skillName: "",
+     skillDetails: "",
+    },
+   ],
+  });
+
+  setProjectInput({
+   idCounter: 1,
+   accordOpenId: 1,
+   inputs: [
+    {
+     id: 1,
+     projectName: "",
+     projectStack: "",
+     startDate: "",
+     endDate: "",
+     detailsId: 1,
+     details: [
+      {
+       id: 1,
+       detail: "",
+      },
+     ],
+    },
+   ],
+  });
+ };
+
  return (
   <>
    <section className="edit-section">
@@ -180,16 +413,24 @@ function App() {
      previewContent={previewContent}
      menuOpen={menuOpen}
      setMenuOpen={setMenuOpen}
+     settingsOpen={settingsOpen}
+     setSettingsOpen={setSettingsOpen}
+     setExample={setExample}
+     clearInput={clearInput}
     />
     <div className="input-section">
-     {!menuOpen ? (
+     {!settingsOpen ? (
       <>
        <GeneralInfo
+        generalInfoInput={generalInfoInput}
         setGeneralInfoInput={setGeneralInfoInput}
+        additionalInfo={additionalInfo}
+        setAdditionalInfo={setAdditionalInfo}
         additionalLinks={additionalLinks}
         setAdditionalLinks={setAdditionalLinks}
         focusedInputId={focusedInputId}
         setFocusedInputId={setFocusedInputId}
+        previewContent={previewContent}
        />
        <Education
         educationInput={educationInput}
@@ -223,6 +464,9 @@ function App() {
        setFontFamily={setFontFamily}
        sectionOrder={sectionOrder}
        setSectionOrder={setSectionOrder}
+       setSectionLayout={setSectionLayout}
+       colors={colors}
+       setColors={setColors}
       />
      )}
     </div>
@@ -237,6 +481,8 @@ function App() {
     projectInput={projectInput}
     fontFamily={fontFamily}
     sectionOrder={sectionOrder}
+    sectionLayout={sectionLayout}
+    colors={colors}
    />
   </>
  );
