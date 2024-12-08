@@ -181,9 +181,13 @@ function App() {
 
  const [sectionLayout, setSectionLayout] = useState("layout-left");
  const [colors, setColors] = useState({
-  fontColor: "#000000",
-  primaryColor: "#000000",
-  secondaryColor: "#000000",
+  secondaryBackground: "#26272C",
+  secondaryFont: "#ffffff",
+  primaryBackground: "#ffffff",
+  primaryFont: "#000000",
+  specialBackground: "#C2A227",
+  summaryFont: "#ffffff",
+  linkFont: "#000000",
  });
 
  const setExample = () => {
@@ -194,6 +198,13 @@ function App() {
    email: "john@doe.com",
    phone: "+1-212-456-7890",
   }));
+
+  setAdditionalInfo({
+   picture: "/examples/cv-placeholder.jpg",
+   subject: "Software Engineer",
+   summary:
+    "Innovative and results-driven Software Engineer with 5+ years of experience in designing, developing, and deploying scalable web and mobile applications. Proficient in modern frameworks and technologies such as React, Node.js, and Python, with a strong foundation in algorithms and system design. Passionate about solving complex problems and improving user experience through efficient code and creative solutions.",
+  });
 
   setAdditionalLinks((prevState) => ({
    ...prevState,
@@ -327,6 +338,12 @@ function App() {
    lastName: "",
    email: "",
    phone: "",
+  });
+
+  setAdditionalInfo({
+   picture: "",
+   subject: "",
+   summary: "",
   });
 
   setAdditionalLinks({
@@ -474,6 +491,7 @@ function App() {
    <Preview
     previewContent={previewContent}
     generalInfoInput={generalInfoInput}
+    additionalInfo={additionalInfo}
     additionalLinks={additionalLinks}
     educationInput={educationInput}
     experienceInput={experienceInput}
