@@ -150,29 +150,65 @@ function Colors({ colors, setColors }) {
     <div className="color-input-wrapper">
      <input
       type="color"
-      id="font-color"
-      value={colors.fontColor}
-      onChange={(e) => handleColorChange(e.target.value, "fontColor")}
+      id="secondaryBackground-color"
+      value={colors.secondaryBackground}
+      onChange={(e) => handleColorChange(e.target.value, "secondaryBackground")}
      />
-     <label htmlFor="font-color">Font</label>
+     <label htmlFor="secondaryBackground-color">Secondary Background</label>
     </div>
     <div className="color-input-wrapper">
      <input
       type="color"
-      id="primary-color"
-      value={colors.primaryColor}
-      onChange={(e) => handleColorChange(e.target.value, "primaryColor")}
+      id="secondaryFont-color"
+      value={colors.secondaryFont}
+      onChange={(e) => handleColorChange(e.target.value, "secondaryFont")}
      />
-     <label htmlFor="primary-color">Primary</label>
+     <label htmlFor="secondaryFont-color">Secondary Font</label>
     </div>
     <div className="color-input-wrapper">
      <input
       type="color"
-      id="secondary-color"
-      value={colors.secondaryColor}
-      onChange={(e) => handleColorChange(e.target.value, "secondaryColor")}
+      id="primaryBackground-color"
+      value={colors.primaryBackground}
+      onChange={(e) => handleColorChange(e.target.value, "primaryBackground")}
      />
-     <label htmlFor="secondary-color">Secondary</label>
+     <label htmlFor="primaryBackground-color">Primary Background</label>
+    </div>
+    <div className="color-input-wrapper">
+     <input
+      type="color"
+      id="primaryFont-color"
+      value={colors.primaryFont}
+      onChange={(e) => handleColorChange(e.target.value, "primaryFont")}
+     />
+     <label htmlFor="primaryFont-color">Primary Font</label>
+    </div>
+    <div className="color-input-wrapper">
+     <input
+      type="color"
+      id="specialBackground-color"
+      value={colors.specialBackground}
+      onChange={(e) => handleColorChange(e.target.value, "specialBackground")}
+     />
+     <label htmlFor="specialBackground-color">Special Background</label>
+    </div>
+    <div className="color-input-wrapper">
+     <input
+      type="color"
+      id="summaryFont-color"
+      value={colors.summaryFont}
+      onChange={(e) => handleColorChange(e.target.value, "summaryFont")}
+     />
+     <label htmlFor="summaryFont-color">Summary Font</label>
+    </div>
+    <div className="color-input-wrapper">
+     <input
+      type="color"
+      id="linkFont-color"
+      value={colors.linkFont}
+      onChange={(e) => handleColorChange(e.target.value, "linkFont")}
+     />
+     <label htmlFor="linkFont-color">Link Font</label>
     </div>
    </div>
   </div>

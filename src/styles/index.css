@@ -342,6 +342,7 @@ footer {
 @media print {
  #root {
   padding: 0;
+  background: transparent !important;
  }
 
  hr {
@@ -366,5 +367,21 @@ footer {
  #preview > div:last-child .paper {
   box-shadow: none;
   padding: 0;
+ }
+
+ #ats {
+  overflow: visible !important;
+  padding: 0 !important;
+  margin: 0 !important;
+ }
+
+ #graphics {
+  overflow: visible !important;
+  padding: 0 !important;
+ }
+
+ #ats section > div,
+ #graphics .paper > * > * > * {
+  page-break-inside: avoid;
  }
 }
