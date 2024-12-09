@@ -1,0 +1,68 @@
+#experience {
+ display: flex;
+ align-items: flex-start;
+ justify-content: center;
+ flex-direction: column;
+}
+
+#experience .experience {
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
+ gap: 1rem;
+ padding: 1rem;
+}
+
+#experience .experience .experience-section {
+ position: relative;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
+ gap: 1rem;
+}
+
+#experience .experience .experience-section.open .accordion-wrapper {
+ transform: scaleY(1);
+ opacity: 1;
+ max-height: min-content;
+ background: var(--light-color-200);
+ padding: 1.5rem 1rem;
+ border-radius: 10px;
+ box-shadow: 1px 1px 8px var(--light-color-600),
+  -1px -1px 8px var(--light-color-600);
+}
+
+#experience .experience .accordion-wrapper .description-wrapper {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+ gap: 1rem;
+}
+
+#experience .experience .accordion-wrapper .description-wrapper > div {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 1rem;
+ width: 100%;
+}
+
+#experience .experience .accordion-wrapper .description-wrapper .input-wrapper {
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+#experience .experience .accordion-wrapper .description-wrapper > div > button {
+ color: red;
+ border-radius: 50%;
+ width: 40px;
+ height: 40px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
