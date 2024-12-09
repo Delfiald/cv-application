@@ -538,13 +538,6 @@ function Preview({
 }) {
  return (
   <section id="preview">
-   <button className="nav-button previous">
-    <i className="fas fa-chevron-left"></i>
-   </button>
-   <button className="nav-button next">
-    <i className="fas fa-chevron-right"></i>
-   </button>
-   <div className="page-number">1 of 2</div>
    {previewContent === "ats" ? (
     <ATS
      generalInfoInput={generalInfoInput}
