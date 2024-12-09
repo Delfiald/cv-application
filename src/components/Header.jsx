@@ -1,8 +1,7 @@
 function Header({
  setPreviewContent,
  previewContent,
- menuOpen,
- setMenuOpen,
+ settingsOpen,
  setSettingsOpen,
  setExample,
  clearInput,
@@ -11,10 +10,6 @@ function Header({
   setPreviewContent((prevPreview) =>
    prevPreview === "ats" ? "graphics" : "ats"
   );
- };
-
- const handleMenuOpen = () => {
-  setMenuOpen((prevState) => !prevState);
  };
 
  const handleSettingsOpen = () => {
@@ -29,34 +24,12 @@ function Header({
   <>
    <aside>
     <div className="options">
-     <button onClick={handleSettingsOpen}>
+     <button
+      onClick={handleSettingsOpen}
+      className={settingsOpen ? "open" : ""}
+     >
       <i className="fas fa-gear"></i>
      </button>
-    </div>
-    <button
-     onClick={handleMenuOpen}
-     className={`setting-button ${menuOpen ? "open" : ""}`}
-    >
-     <i className="fas fa-sliders"></i>
-    </button>
-    <div className="menu-wrapper">
-     <div className="fill-example">
-      <button onClick={() => setExample()}>
-       <i className="fas fa-file-import"></i>{" "}
-       <div className="div">Fill With Example</div>
-      </button>
-     </div>
-     <div className="clear">
-      <button onClick={() => clearInput()}>
-       <i className="fas fa-rotate"></i>
-       <div>Clear</div>
-      </button>
-     </div>
-     <div className="print">
-      <button onClick={handlePrint}>
-       <i className="fas fa-print"></i> <div>Print</div>
-      </button>
-     </div>
     </div>
    </aside>
 
@@ -77,6 +50,25 @@ function Header({
       >
        Graphics
       </button>
+     </div>
+     <div className="menu-wrapper">
+      <div className="fill-example">
+       <button onClick={() => setExample()}>
+        <i className="fas fa-file-import"></i>{" "}
+        <div className="div">Load Example</div>
+       </button>
+      </div>
+      <div className="clear">
+       <button onClick={() => clearInput()}>
+        <i className="fas fa-rotate"></i>
+        <div>Clear</div>
+       </button>
+      </div>
+      <div className="print">
+       <button onClick={handlePrint}>
+        <i className="fas fa-print"></i> <div>Print</div>
+       </button>
+      </div>
      </div>
     </nav>
    </header>

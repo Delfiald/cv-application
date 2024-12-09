@@ -481,6 +481,7 @@ function App() {
        setFontFamily={setFontFamily}
        sectionOrder={sectionOrder}
        setSectionOrder={setSectionOrder}
+       sectionLayout={sectionLayout}
        setSectionLayout={setSectionLayout}
        colors={colors}
        setColors={setColors}

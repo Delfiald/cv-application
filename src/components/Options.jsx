@@ -102,7 +102,7 @@ function Order({ sectionOrder, setSectionOrder }) {
  );
 }
 
-function Layout({ setSectionLayout }) {
+function Layout({ sectionLayout, setSectionLayout }) {
  const handleSectionLayout = (layoutName) => {
   setSectionLayout(layoutName);
  };
@@ -112,21 +112,21 @@ function Layout({ setSectionLayout }) {
    <div className="layout-list-wrapper">
     <button
      onClick={() => handleSectionLayout("layout-left")}
-     className="layout"
+     className={`layout ${sectionLayout === "layout-left" ? "active" : ""}`}
     >
      <div className="layout-pict"></div>
      <div className="layout-name">Left</div>
     </button>
     <button
      onClick={() => handleSectionLayout("layout-top")}
-     className="layout"
+     className={`layout ${sectionLayout === "layout-top" ? "active" : ""}`}
     >
      <div className="layout-pict"></div>
      <div className="layout-name">Top</div>
     </button>
     <button
      onClick={() => handleSectionLayout("layout-right")}
-     className="layout"
+     className={`layout ${sectionLayout === "layout-right" ? "active" : ""}`}
     >
      <div className="layout-pict"></div>
      <div className="layout-name">Right</div>
@@ -221,6 +221,7 @@ function Options({
  setSectionOrder,
  sectionOrder,
  previewContent,
+ sectionLayout,
  setSectionLayout,
  colors,
  setColors,
@@ -228,18 +229,23 @@ function Options({
  return (
   <section id="options">
    <h2>Options</h2>
-   {previewContent === "ats" ? (
-    <>
-     <Fonts fontFamily={fontFamily} setFontFamily={setFontFamily} />
-     <Order sectionOrder={sectionOrder} setSectionOrder={setSectionOrder} />
-    </>
-   ) : (
-    <>
-     <Fonts fontFamily={fontFamily} setFontFamily={setFontFamily} />
-     <Layout setSectionLayout={setSectionLayout} />
-     <Colors colors={colors} setColors={setColors} />
-    </>
-   )}
+   <div className="options-wrapper">
+    {previewContent === "ats" ? (
+     <>
+      <Fonts fontFamily={fontFamily} setFontFamily={setFontFamily} />
+      <Order sectionOrder={sectionOrder} setSectionOrder={setSectionOrder} />
+     </>
+    ) : (
+     <>
+      <Fonts fontFamily={fontFamily} setFontFamily={setFontFamily} />
+      <Layout
+       sectionLayout={sectionLayout}
+       setSectionLayout={setSectionLayout}
+      />
+      <Colors colors={colors} setColors={setColors} />
+     </>
+    )}
+   </div>
   </section>
  );
 }
