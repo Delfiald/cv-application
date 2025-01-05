@@ -111,18 +111,6 @@ function Input({
       />
       <label htmlFor="profile-subject">Subject</label>
      </div>
-     <div
-      className={`input-wrapper ${focusedInputId === "summary" ? "focus" : ""}`}
-     >
-      <textarea
-       id="summary"
-       placeholder="Chill Front-end Developer Guy that love Critical Thinking, just keep chilling"
-       value={additionalInfo.summary}
-       onFocus={() => handleFocus("summary")}
-       onChange={(e) => handleAddInfoChange("summary", e.target.value)}
-      ></textarea>
-      <label htmlFor="summary">Summary</label>
-     </div>
     </div>
    )}
    {inputList.map((inputItem) => (
@@ -143,6 +131,18 @@ function Input({
      <label htmlFor={inputItem.id}>{inputItem.label}</label>
     </div>
    ))}
+   <div
+    className={`input-wrapper ${focusedInputId === "summary" ? "focus" : ""}`}
+   >
+    <textarea
+     id="summary"
+     placeholder="Chill Front-end Developer Guy that love Critical Thinking, just keep chilling"
+     value={additionalInfo.summary}
+     onFocus={() => handleFocus("summary")}
+     onChange={(e) => handleAddInfoChange("summary", e.target.value)}
+    ></textarea>
+    <label htmlFor="summary">Summary</label>
+   </div>
   </>
  );
 }

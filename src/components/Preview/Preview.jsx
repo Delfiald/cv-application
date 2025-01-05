@@ -321,6 +321,18 @@ function ATSContactInformation({ generalInfoInput, additionalLinks }) {
  );
 }
 
+function ATSSummary({ summaryInput }) {
+ return (
+  <section className="summary">
+   <h2>Summary</h2>
+   <hr />
+   <div className="summary-wrapper">
+    {summaryInput === "" ? "Summary" : summaryInput}
+   </div>
+  </section>
+ );
+}
+
 function ATSSkills({ skillInput }) {
  return (
   <section className="skill">
@@ -483,6 +495,7 @@ function ATSProjects({ projectInput }) {
 function ATS({
  generalInfoInput,
  additionalLinks,
+ summaryInput,
  educationInput,
  experienceInput,
  skillInput,
@@ -512,6 +525,7 @@ function ATS({
      generalInfoInput={generalInfoInput}
      additionalLinks={additionalLinks}
     />
+    <ATSSummary summaryInput={summaryInput} />
     {sectionOrder.map((sectionName) => (
      <React.Fragment key={sectionName.id}>
       {renderSection(sectionName.sectionName)}
@@ -542,6 +556,7 @@ function Preview({
     <ATS
      generalInfoInput={generalInfoInput}
      additionalLinks={additionalLinks}
+     summaryInput={additionalInfo.summary}
      educationInput={educationInput}
      experienceInput={experienceInput}
      skillInput={skillInput}
